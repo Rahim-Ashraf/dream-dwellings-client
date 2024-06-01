@@ -2,9 +2,9 @@
 
 const AllProperties = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <h1 className="text-5xl font-bold text-center text-[#0055ff] my-6">All properties </h1>
+        </>
     );
 };
 
