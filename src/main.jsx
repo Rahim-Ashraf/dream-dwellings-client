@@ -7,6 +7,7 @@ import {
   QueryClient,
   QueryClientProvider
 } from '@tanstack/react-query'
+import Provider from './Provider/Provider'
 
 const queryClient = new QueryClient()
 
@@ -14,7 +15,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <div className='max-w-screen-2xl mx-auto'>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <Provider>
+          <RouterProvider router={router} />
+        </Provider>
       </QueryClientProvider>
     </div>
   </React.StrictMode>,

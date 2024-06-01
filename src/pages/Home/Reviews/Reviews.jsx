@@ -13,7 +13,7 @@ const Reviews = () => {
             return res.data
         }
     })
-    console.log(reviews)
+
     return (
         <div>
             <swiper-container slides-per-view="3" loop="true" autoplay="true">

@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 
 const Navbar = () => {
+    const { user } = useAuth()
+
     const menu = <>
         <NavLink to="/" className={({ isActive }) => isActive ? "text-[#0066ff] font-bold" : "text-[#0055ff] font-bold"
         }>Home</NavLink>
