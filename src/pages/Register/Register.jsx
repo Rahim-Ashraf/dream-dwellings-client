@@ -4,6 +4,7 @@ import { useState } from "react";
 import { IoMdEyeOff } from "react-icons/io";
 import { FaEye } from "react-icons/fa";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 
 const Register = () => {
@@ -11,13 +12,20 @@ const Register = () => {
     const { emailRegister, updateUser } = useAuth();
     const [showPass, setShowPass] = useState(true);
     const [registerError, setRegisterError] = useState("")
-    const handleEmailRegister = (e) => {
+
+    const handleEmailRegister = async (e) => {
         e.preventDefault();
         setRegisterError("");
         const email = e.target.email.value;
         const password = e.target.password.value;
         const name = e.target.name.value;
-        const photoURL = e.target.photoURL.value;
+        const photo = e.target.photo.files[0];
+        const formData = new FormData()
+        formData.set('key', 'c2fde89598db76e7697f8f2bf3f338ec')
+        formData.append("image", photo)
+        console.log(photo, formData)
+        const res = await axios.post("https://api.imgbb.com/1/upload", formData)
+        const photoURL = res.data.data.image.url;
 
         if (password.length < 6) {
             setRegisterError("password should be atlest 6 charecter");
@@ -34,22 +42,26 @@ const Register = () => {
         }
 
         emailRegister(email, password)
-            .then(() => {
-                updateUser(name, photoURL)
+            .then(async () => {
+                updateUser(name, await photoURL)
                     .then(() => console.log("user updated"))
                     .catch(() => console.log("user not updated"))
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Loged In Successfully",
-                        showConfirmButton: false,
-                        timer: 1500
-                      });
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Registration Successfull",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 navigate("/")
             })
             .catch(() => {
-                // toast.error("Emai already exist");
-                // console.log("error")
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Registration failed"
+                });
+                console.log("error")
             })
     }
     return (
@@ -64,9 +76,9 @@ const Register = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">photoURL</span>
+                            <span className="label-text">Photo</span>
                         </label>
-                        <input type="text" name="photoURL" placeholder="photoURL" className="input input-bordered" required />
+                        <input type="file" name="photo" placeholder="Photo" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
@@ -87,14 +99,19 @@ const Register = () => {
                         {registerError}
                     </p>
                     <div className="form-control mt-6">
-                        <button type="submit" className="btn bg-emerald-600 text-white">Register</button>
+                        <button type="submit" className="btn bg-[#0055ff] text-white">Register</button>
                     </div>
                 </form>
 
 
-                <div>
-                    <span>Alredy Have an Account?</span>
-                    <Link to={"/login"} className="text-blue-600 font-bold"> Login</Link>
+                <div className="flex justify-between">
+                    <div>
+                        <span className="font-semibold">Alredy Have an Account?</span>
+                        <Link to="/login" className="text-blue-600 font-bold"> Login</Link>
+                    </div>
+                    <div>
+                        <span className="font-bold">Go to </span><Link to="/" className="btn bg-[#0055ff] text-white font-semibold"> Home Page</Link>
+                    </div>
                 </div>
             </div>
         </div>

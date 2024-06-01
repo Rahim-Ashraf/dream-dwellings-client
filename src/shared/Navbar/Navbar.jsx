@@ -1,9 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 
 const Navbar = () => {
-    const { user } = useAuth()
+    const { user, logOut } = useAuth()
+    const handleLogout = () => {
+        logOut()
+    }
 
     const menu = <>
         <NavLink to="/" className={({ isActive }) => isActive ? "text-[#0066ff] font-bold" : "text-[#0055ff] font-bold"
@@ -30,18 +33,22 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <details className="dropdown dropdown-end">
+                {user ? <details className="dropdown dropdown-end">
                     <summary tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
                         </div>
                     </summary >
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                         <li><NavLink to={"/dashboard"} className={({ isActive }) => isActive ? "ml-4 text-[#0066ff] font-bold text-center btn btn-sm btn-ghost" : "ml-4 text-[#0055ff] font-bold text-center btn btn-sm btn-ghost"
                         }>Dashboard</NavLink></li>
-                        <li><button className="btn btn-error text-white">Logout</button></li>
+                        <li><button onClick={handleLogout} className="btn btn-error text-white">Logout</button></li>
                     </ul>
                 </details>
+                    : <div className="flex">
+                        <Link to="/register"><button className="ml-4 text-[#0055ff] font-bold">Register</button></Link>
+                        <Link to="/login"><button className="ml-4 text-[#0055ff] font-bold">Login</button></Link>
+                    </div>}
             </div>
 
         </div>
