@@ -11,7 +11,6 @@ const AllProperties = () => {
             return res.data
         }
     })
-    console.log(properties)
 
     return (
         <>
@@ -29,7 +28,7 @@ const AllProperties = () => {
                             <p>{property.verification_status}</p>
                         </div>
                         <div className="my-auto">
-                            <Link to={`/advertisement-details/${property._id}`}><button className="btn bg-[#0055ff] text-white">Details</button></Link>
+                            <Link to={`/details/${property._id}`}><button className="btn bg-[#0055ff] text-white">Details</button></Link>
                         </div>
                     </div>
                 </div>)}

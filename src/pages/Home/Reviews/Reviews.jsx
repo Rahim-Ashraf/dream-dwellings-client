@@ -6,10 +6,10 @@ register();
 
 const Reviews = () => {
     const axiosPublic = useAxiosPublic()
-    const { data: reviews = [] } = useQuery({
-        queryKey: ["reviews"],
+    const { data: latestReviews = [] } = useQuery({
+        queryKey: ["latestReviews"],
         queryFn: async () => {
-            const res = await axiosPublic.get("/reviews")
+            const res = await axiosPublic.get("/latest-reviews")
             return res.data
         }
     })
@@ -17,7 +17,7 @@ const Reviews = () => {
     return (
         <div>
             <swiper-container slides-per-view="3" loop="true" autoplay="true">
-                {reviews.map(review => <swiper-slide key={review._id}>
+                {latestReviews.map(review => <swiper-slide key={review._id}>
                     <div className="card card-compact bg-base-100 shadow-xl mx-4">
                         <div className="card-body">
                             <div className='flex gap-2'>

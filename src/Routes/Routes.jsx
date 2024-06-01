@@ -6,6 +6,7 @@ import Error from "../pages/Error/Error";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Details from "../pages/Details/Details";
 
 const router = createBrowserRouter([
     {
@@ -20,9 +21,14 @@ const router = createBrowserRouter([
             {
                 path: "/all-properties",
                 element: <PrivateRoute><AllProperties></AllProperties></PrivateRoute>
+            },
+            {
+                path: "/details/:id",
+                element: <PrivateRoute><Details></Details></PrivateRoute>
             }
         ],
     },
+
     {
         path: "/register",
         element: <Register></Register>
