@@ -7,6 +7,9 @@ import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Details from "../pages/Details/Details";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
+import Wishlist from "../pages/Dashboard/Wishlist/Wishlist";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +28,20 @@ const router = createBrowserRouter([
             {
                 path: "/details/:id",
                 element: <PrivateRoute><Details></Details></PrivateRoute>
+            },
+            {
+                path: "/dashboard",
+                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+                children:[
+                    {
+                        path:"/dashboard/my-profile",
+                        element:<PrivateRoute><MyProfile></MyProfile></PrivateRoute>
+                    },
+                    {
+                        path:"/dashboard/wishlist",
+                        element:<PrivateRoute><Wishlist></Wishlist></PrivateRoute>
+                    },
+                ]
             }
         ],
     },

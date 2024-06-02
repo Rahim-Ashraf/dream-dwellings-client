@@ -19,13 +19,6 @@ const Register = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         const name = e.target.name.value;
-        const photo = e.target.photo.files[0];
-        const formData = new FormData()
-        formData.set('key', 'c2fde89598db76e7697f8f2bf3f338ec')
-        formData.append("image", photo)
-        console.log(photo, formData)
-        const res = await axios.post("https://api.imgbb.com/1/upload", formData)
-        const photoURL = res.data.data.image.url;
 
         if (password.length < 6) {
             setRegisterError("password should be atlest 6 charecter");
@@ -33,13 +26,17 @@ const Register = () => {
         } else if (!/[A-Z]/.test(password)) {
             setRegisterError("password should have atlast 1 capital letter");
             return
-        } else if (!/[0-9]/.test(password)) {
-            setRegisterError("password should have atlast 1 numeric character");
-            return
         } else if (!/[ !"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]/.test(password)) {
             setRegisterError("password should have atlast 1 special charecter");
             return
         }
+
+        const photo = e.target.photo.files[0];
+        const formData = new FormData()
+        formData.set('key', 'c2fde89598db76e7697f8f2bf3f338ec')
+        formData.append("image", photo)
+        const res = await axios.post("https://api.imgbb.com/1/upload", formData)
+        const photoURL = res.data.data.image.url;
 
         emailRegister(email, password)
             .then(async () => {

@@ -18,14 +18,20 @@ const Details = () => {
     })
     const handleAddToWishlist = async (propertyDetails) => {
         const data = {
-            propertyId: propertyDetails._id,
-            wishlistEmail: user.email,
-
+            property_id: propertyDetails._id,
+            wishlist_email: user.email,
+            property_image: propertyDetails.property_image,
+            property_title: propertyDetails.property_title,
+            property_location: propertyDetails.property_location,
+            agent_name: propertyDetails.agent_name,
+            agent_image: propertyDetails.agent_image,
+            verification_status: propertyDetails.verification_status,
+            price_range: propertyDetails.price_range,
         }
         const res = await axiosSecure.post("/add-to-wishlist", data)
         console.log(res.data)
     }
-    const { data: reviews = [] } = useQuery({
+    const { data: reviews = [], refetch: reviewRefetch } = useQuery({
         queryKey: ["reviews"],
         queryFn: async () => {
             const res = await axiosSecure.get(`/reviews?propertyId=${id}`)
@@ -45,8 +51,8 @@ const Details = () => {
             reviewer_email: user.email,
             reviewer_image: user.photoURL,
         }
-        const res = await axiosSecure.post("/reviews", data)
-        console.log(res.data)
+        await axiosSecure.post("/reviews", data)
+        reviewRefetch()
     }
 
     return (
