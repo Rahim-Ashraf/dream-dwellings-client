@@ -12,6 +12,7 @@ import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import Wishlist from "../pages/Dashboard/Wishlist/Wishlist";
 import MakeOffer from "../pages/MakeOffer/MakeOffer";
 import PropertyBought from "../pages/Dashboard/PropertyBought/PropertyBought";
+import Payment from "../pages/Payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
             {
                 path: "/make-offer/:id",
                 element: <PrivateRoute><MakeOffer></MakeOffer></PrivateRoute>
+            },
+            {
+                path: "/payment",
+                element: <PrivateRoute><Payment></Payment></PrivateRoute>
             }
         ],
     },
