@@ -9,9 +9,9 @@ const Navbar = () => {
     }
 
     const menu = <>
-        <NavLink to="/" className={({ isActive }) => isActive ? "text-[#0066ff] font-bold" : "text-[#0055ff] font-bold"
+        <NavLink to="/" className={({ isActive }) => isActive ? "text-gray-600 font-bold" : "font-bold"
         }>Home</NavLink>
-        <NavLink to="/all-properties" className={({ isActive }) => isActive ? "ml-4 text-[#0066ff] font-bold" : "ml-4 text-[#0055ff] font-bold"
+        <NavLink to="/all-properties" className={({ isActive }) => isActive ? "ml-4 text-gray-600 font-bold" : "ml-4 font-bold"
         }>All properties</NavLink>
     </>
     return (
