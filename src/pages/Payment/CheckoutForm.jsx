@@ -5,9 +5,12 @@ import {
 } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ singlePropertyBought }) => {
     const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate()
 
     const stripe = useStripe();
     const elements = useElements()
@@ -26,17 +29,26 @@ const CheckoutForm = () => {
             setPaymentError(error.message)
             setPaymentSuccess("")
         } else {
-            const res = await axiosSecure.post("/payment", { amount: 1000 })
-            const paymentIntent = await res.data;
-            const confirmPayment = await stripe.confirmCardPayment(paymentIntent.clientSecret, {
+            const res = await axiosSecure.post("/payment", { amount: singlePropertyBought.offered_amount * 100 })
+            const { clientSecret, paymentIntentId } = await res.data;
+            const confirmPayment = await stripe.confirmCardPayment(clientSecret, {
                 payment_method: paymentMethod.id,
             })
             if (confirmPayment.error) {
                 setPaymentSuccess("")
                 setPaymentError(confirmPayment.error.message)
             } else {
-                setPaymentError("")
-                setPaymentSuccess("Payment Successful")
+                console.log("client secret" + clientSecret, "payment intent id" + paymentIntentId)
+                setPaymentError("");
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Payment successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                await axiosSecure.put(`/single-property-bought?id=${singlePropertyBought._id}`, { transaction_id: paymentIntentId, });
+                navigate("/dashboard/property-bought")
             }
         }
 

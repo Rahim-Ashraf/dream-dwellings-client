@@ -28,7 +28,7 @@ const PropertyBought = () => {
                         <p>Status: {propertyBought.verification_status}</p>
                     </div>
                     <div className="my-auto">
-                        {propertyBought.verification_status === "verified" ? <Link to={"/payment"}><button className="btn bg-[#0055ff] text-white">Pay</button></Link> : ""}
+                        {propertyBought.verification_status === "verified" ? <Link to={`/payment/${propertyBought._id}`}><button className="btn bg-[#0055ff] text-white">Pay</button></Link> : propertyBought.verification_status === "bought" ? <h2>transaction id: {propertyBought.transaction_id}</h2> : ""}
                     </div>
                 </div>
             </div>)}
