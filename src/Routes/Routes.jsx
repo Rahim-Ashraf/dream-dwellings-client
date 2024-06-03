@@ -14,6 +14,8 @@ import MakeOffer from "../pages/MakeOffer/MakeOffer";
 import PropertyBought from "../pages/Dashboard/PropertyBought/PropertyBought";
 import Payment from "../pages/Payment/Payment";
 import MyReviews from "../pages/Dashboard/MyReviews/MyReviews";
+import AgentRoute from "../AgentRoute/AgentRoute";
+import AgentDashboard from "../pages/AgentDashboard/AgentDashboard";
 
 const router = createBrowserRouter([
     {
@@ -54,6 +56,13 @@ const router = createBrowserRouter([
                         element: <PrivateRoute><MyReviews></MyReviews></PrivateRoute>
                     }
                 ]
+            },
+            {
+                path: "/agent-dashboard",
+                element: <AgentRoute><AgentDashboard></AgentDashboard></AgentRoute>,
+                // children:[
+                //     {}
+                // ]
             },
             {
                 path: "/make-offer/:id",

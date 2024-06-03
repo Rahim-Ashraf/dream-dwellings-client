@@ -1,13 +1,17 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const Login = () => {
+    const axiosPublic = useAxiosPublic();
     const { emailLogin, googleLogin, githubLogin } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation()
+
     const handleEmailLogin = e => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -21,7 +25,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate("/")
+                navigate(location.state ? `${location.state}` : "/");
 
             })
             .catch(error => {
@@ -36,7 +40,7 @@ const Login = () => {
 
     const handleGoogleLogin = () => {
         googleLogin()
-            .then(() => {
+            .then((res) => {
                 Swal.fire({
                     position: "center",
                     icon: "success",
@@ -44,7 +48,8 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate("/")
+                axiosPublic.post("/users", { email: res.user.email, userName: res.user.displayName })
+                navigate(location.state ? `${location.state}` : "/");
             })
             .catch(error => {
                 console.log(error)

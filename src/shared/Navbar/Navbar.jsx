@@ -1,9 +1,20 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const Navbar = () => {
-    const { user, logOut } = useAuth()
+    const { user, logOut } = useAuth();
+    const axiosPublic = useAxiosPublic();
+    const { data: dbUser } = useQuery({
+        queryKey: ["user"],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/user?email=${user.email}`);
+            return res.data;
+        }
+    })
+
     const handleLogout = () => {
         logOut()
     }
@@ -40,7 +51,7 @@ const Navbar = () => {
                         </div>
                     </summary >
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><NavLink to={"/dashboard"} className={({ isActive }) => isActive ? "ml-4 text-[#0066ff] font-bold text-center btn btn-sm btn-ghost" : "ml-4 text-[#0055ff] font-bold text-center btn btn-sm btn-ghost"
+                        <li><NavLink to={dbUser?.role === "agent" ? "/agent-dashboard" : "/dashboard"} className={({ isActive }) => isActive ? "ml-4 text-[#0066ff] font-bold text-center btn btn-sm btn-ghost" : "ml-4 text-[#0055ff] font-bold text-center btn btn-sm btn-ghost"
                         }>Dashboard</NavLink></li>
                         <li><button onClick={handleLogout} className="btn btn-error text-white">Logout</button></li>
                     </ul>

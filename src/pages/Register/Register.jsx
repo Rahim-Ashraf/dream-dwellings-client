@@ -5,10 +5,12 @@ import { IoMdEyeOff } from "react-icons/io";
 import { FaEye } from "react-icons/fa";
 import Swal from "sweetalert2";
 import axios from "axios";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const Register = () => {
-    const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
     const { emailRegister, updateUser } = useAuth();
     const [showPass, setShowPass] = useState(true);
     const [registerError, setRegisterError] = useState("")
@@ -39,8 +41,8 @@ const Register = () => {
         const photoURL = res.data.data.image.url;
 
         emailRegister(email, password)
-            .then(async () => {
-                updateUser(name, await photoURL)
+            .then((res) => {
+                updateUser(name, photoURL)
                     .then(() => console.log("user updated"))
                     .catch(() => console.log("user not updated"))
                 Swal.fire({
@@ -50,6 +52,8 @@ const Register = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+
+                axiosPublic.post("/users", { email: res.user.email, userName: name })
                 navigate("/")
             })
             .catch(() => {
