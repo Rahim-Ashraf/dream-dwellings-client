@@ -39,17 +39,24 @@ const Details = () => {
 
         }
     })
-    console.log(reviews)
+
     const handleAddReview = async (e) => {
         // e.preventDefault()
-        const review_description = e.target.review_description.value
+        const review_description = e.target.review_description.value;
+        const newDate = new Date();
+        
+
+        const date = `At ${newDate.getHours()}:${newDate.getMinutes()} | ${newDate.getDate()}-${newDate.getMonth() + 1}-${newDate.getFullYear()}`
+
         const data = {
             property_id: propertyDetails._id,
-            property_title: propertyDetails.propertyDetails,
+            property_title: propertyDetails.property_title,
+            agent_name: propertyDetails.agent_name,
             review_description,
             reviewer_name: user.displayName,
             reviewer_email: user.email,
             reviewer_image: user.photoURL,
+            date,
         }
         await axiosSecure.post("/reviews", data)
         reviewRefetch()

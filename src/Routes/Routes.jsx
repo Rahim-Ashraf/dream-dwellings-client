@@ -13,6 +13,7 @@ import Wishlist from "../pages/Dashboard/Wishlist/Wishlist";
 import MakeOffer from "../pages/MakeOffer/MakeOffer";
 import PropertyBought from "../pages/Dashboard/PropertyBought/PropertyBought";
 import Payment from "../pages/Payment/Payment";
+import MyReviews from "../pages/Dashboard/MyReviews/MyReviews";
 
 const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
                         path: "/dashboard/property-bought",
                         element: <PrivateRoute><PropertyBought></PropertyBought></PrivateRoute>
                     },
+                    {
+                        path: "/dashboard/my-reviews",
+                        element: <PrivateRoute><MyReviews></MyReviews></PrivateRoute>
+                    }
                 ]
             },
             {
