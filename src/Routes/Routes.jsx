@@ -23,6 +23,9 @@ import MyAddedProperties from "../pages/AgentDashboard/MyAddedProperties/MyAdded
 import PropertyUpdate from "../pages/AgentDashboard/PropertyUpdate/PropertyUpdate";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import AdminDashboard from "../pages/AdminDashboard/AdminDashboard";
+import ManageReviews from "../pages/AdminDashboard/ManageReviews/ManageReviews";
+import ManageProperties from "../pages/AdminDashboard/ManageProperties/ManageProperties";
+import ManageUsers from "../pages/AdminDashboard/ManageUsers/ManageUsers";
 
 
 const router = createBrowserRouter([
@@ -102,7 +105,19 @@ const router = createBrowserRouter([
                     {
                         path: "/admin-dashboard/my-profile",
                         element: <AdminRoute><MyProfile></MyProfile></AdminRoute>
-                    }
+                    },
+                    {
+                        path: "/admin-dashboard/manage-properties",
+                        element: <AdminRoute><ManageProperties></ManageProperties></AdminRoute>
+                    },
+                    {
+                        path: "/admin-dashboard/manage-users",
+                        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+                    },
+                    {
+                        path: "/admin-dashboard/manage-reviews",
+                        element: <AdminRoute><ManageReviews></ManageReviews></AdminRoute>
+                    },
                 ]
             },
             {

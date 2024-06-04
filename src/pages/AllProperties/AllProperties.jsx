@@ -7,7 +7,7 @@ const AllProperties = () => {
     const { data: properties = [] } = useQuery({
         queryKey: ["properties"],
         queryFn: async () => {
-            const res = await axiosSecure.get("/properties")
+            const res = await axiosSecure.get("/verified-properties")
             return res.data
         }
     })

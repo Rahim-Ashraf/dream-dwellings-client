@@ -33,7 +33,7 @@ const AddProperty = () => {
             agent_image: user.photoURL,
             price_range,
             property_image,
-            verification_status: "Not Verified",
+            verification_status: "pending",
         }
         axiosSecure.post("/properties", data)
             .then(res => {
