@@ -8,7 +8,7 @@ import Login from "../pages/Login/Login";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Details from "../pages/Details/Details";
 import Dashboard from "../pages/Dashboard/Dashboard";
-import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
+import MyProfile from "../shared/MyProfile/MyProfile";
 import Wishlist from "../pages/Dashboard/Wishlist/Wishlist";
 import MakeOffer from "../pages/MakeOffer/MakeOffer";
 import PropertyBought from "../pages/Dashboard/PropertyBought/PropertyBought";
@@ -16,6 +16,12 @@ import Payment from "../pages/Payment/Payment";
 import MyReviews from "../pages/Dashboard/MyReviews/MyReviews";
 import AgentRoute from "../AgentRoute/AgentRoute";
 import AgentDashboard from "../pages/AgentDashboard/AgentDashboard";
+import AddProperty from "../pages/AgentDashboard/AddProperty/AddProperty";
+import RequestedProperties from "../pages/AgentDashboard/RequestedProperties/RequestedProperties";
+import MySoldProperties from "../pages/AgentDashboard/MySoldProperties/MySoldProperties";
+import MyAddedProperties from "../pages/AgentDashboard/MyAddedProperties/MyAddedProperties";
+import PropertyUpdate from "../pages/AgentDashboard/PropertyUpdate/PropertyUpdate";
+
 
 const router = createBrowserRouter([
     {
@@ -60,9 +66,32 @@ const router = createBrowserRouter([
             {
                 path: "/agent-dashboard",
                 element: <AgentRoute><AgentDashboard></AgentDashboard></AgentRoute>,
-                // children:[
-                //     {}
-                // ]
+                children: [
+                    {
+                        path: "/agent-dashboard/my-profile",
+                        element: <AgentRoute><MyProfile></MyProfile></AgentRoute>
+                    },
+                    {
+                        path: "/agent-dashboard/add-property",
+                        element: <AgentRoute><AddProperty></AddProperty></AgentRoute>
+                    },
+                    {
+                        path: "/agent-dashboard/my-added-properties",
+                        element: <AgentRoute><MyAddedProperties></MyAddedProperties></AgentRoute>
+                    },
+                    {
+                        path: "/agent-dashboard/my-sold-properties",
+                        element: <AgentRoute><MySoldProperties></MySoldProperties></AgentRoute>
+                    },
+                    {
+                        path: "/agent-dashboard/requested-properties",
+                        element: <AgentRoute><RequestedProperties></RequestedProperties></AgentRoute>
+                    },
+                    {
+                        path: "/agent-dashboard/property-update/:id",
+                        element: <AgentRoute><PropertyUpdate></PropertyUpdate></AgentRoute>
+                    },
+                ]
             },
             {
                 path: "/make-offer/:id",

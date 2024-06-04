@@ -21,29 +21,31 @@ const MakeOffer = () => {
         e.preventDefault()
         setPriceRangeError("")
         const form = e.target
-        const property_title = form.property_title.value
-        const property_location = form.property_location.value
-        const agent_name = form.agent_name.value
-        const offered_amount = form.offered_amount.value
-        const splitedPriceRange = price_range.split("-")
+        const property_title = form.property_title.value;
+        const property_location = form.property_location.value;
+        const agent_name = form.agent_name.value;
+        const agent_email = property.agent_email;
+        const offered_amount = form.offered_amount.value;
+        const splitedPriceRange = price_range.split("-");
         if (offered_amount < parseInt(splitedPriceRange[0]) || offered_amount > parseInt(splitedPriceRange[1])) {
             setPriceRangeError(`please select a price between ${price_range}`)
             return
         }
-        const buyer_email = form.buyer_email.value
-        const buyer_name = form.buyer_name.value
-        const buying_date = form.buying_date.value
+        const buyer_email = form.buyer_email.value;
+        const buyer_name = form.buyer_name.value;
+        const buying_date = form.buying_date.value;
         const data = {
             property_id: property._id,
             property_title,
-            property_image:property.property_image,
+            property_image: property.property_image,
             property_location,
             agent_name,
+            agent_email,
             offered_amount,
             buyer_email,
             buyer_name,
             buying_date,
-            verification_status:"pending"
+            verification_status: "pending"
         }
         axiosSecure.post("/make-offer", data)
             .then(res => console.log(res.data))
