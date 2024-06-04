@@ -1,11 +1,11 @@
-import { Navigate } from "react-router-dom";
+import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 
-const AgentRoute = ({ children }) => {
+const AdminRoute = ({ children }) => {
     const { user, loading } = useAuth();
     const axiosPublic = useAxiosPublic();
     const [dbLoading, setDbLoading] = useState(true)
@@ -26,10 +26,10 @@ const AgentRoute = ({ children }) => {
                 loading || dbLoading ? <div className="w-full flex justify-center">
                     <span className="loading loading-spinner loading-lg flex justify-center items-center h-screen"></span>
                 </div> :
-                    user && dbUser?.role === "agent" ? children : <Navigate to={"/dashboard"}></Navigate>
+                    user && dbUser?.role === "admin" ? children : <Navigate to={"/"}></Navigate>
             }
         </div>
     );
 };
 
-export default AgentRoute;
+export default AdminRoute;

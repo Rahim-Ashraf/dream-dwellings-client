@@ -5,7 +5,7 @@ const AgentNav = () => {
     return (
         <div className="bg-[#0055ff] flex flex-col p-4">
             <NavLink to="/agent-dashboard/my-profile" className={({ isActive }) => isActive ? "text-gray-100 font-bold" : "font-bold"
-            }>My Profile</NavLink>
+            }>Agent Profile</NavLink>
             <NavLink to="/agent-dashboard/add-property" className={({ isActive }) => isActive ? "text-gray-100 font-bold" : "font-bold"
             }>Add Property</NavLink>
             <NavLink to="/agent-dashboard/my-added-properties" className={({ isActive }) => isActive ? "text-gray-100 font-bold" : "font-bold"

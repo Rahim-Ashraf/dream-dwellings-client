@@ -21,6 +21,8 @@ import RequestedProperties from "../pages/AgentDashboard/RequestedProperties/Req
 import MySoldProperties from "../pages/AgentDashboard/MySoldProperties/MySoldProperties";
 import MyAddedProperties from "../pages/AgentDashboard/MyAddedProperties/MyAddedProperties";
 import PropertyUpdate from "../pages/AgentDashboard/PropertyUpdate/PropertyUpdate";
+import AdminRoute from "../AdminRoute/AdminRoute";
+import AdminDashboard from "../pages/AdminDashboard/AdminDashboard";
 
 
 const router = createBrowserRouter([
@@ -91,6 +93,16 @@ const router = createBrowserRouter([
                         path: "/agent-dashboard/property-update/:id",
                         element: <AgentRoute><PropertyUpdate></PropertyUpdate></AgentRoute>
                     },
+                ]
+            },
+            {
+                path: "/admin-dashboard",
+                element: <AdminRoute><AdminDashboard></AdminDashboard></AdminRoute>,
+                children: [
+                    {
+                        path: "/admin-dashboard/my-profile",
+                        element: <AdminRoute><MyProfile></MyProfile></AdminRoute>
+                    }
                 ]
             },
             {
