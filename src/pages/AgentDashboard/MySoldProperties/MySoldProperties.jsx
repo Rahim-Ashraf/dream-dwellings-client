@@ -17,7 +17,20 @@ const MySoldProperties = () => {
 
     return (
         <div>
-
+            {
+                mySoldProperties.map(property => <div key={property._id} className="card card-compact bg-base-100 shadow-xl">
+                    <figure><img src={property.property_image} alt="" /></figure>
+                    <div className="flex justify-between gap-4 p-4">
+                        <div>
+                            <h2 className="card-title">{property.property_title}</h2>
+                            <p>Location: {property.property_location}</p>
+                            <p>Buyer Name: {property.buyer_name}</p>
+                            <p>Buyer Email: {property.buyer_email}</p>
+                            <p>Sold Price: {property.offered_amount}</p>
+                        </div>
+                    </div>
+                </div>)
+            }
         </div>
     );
 };
