@@ -21,7 +21,7 @@ const Reviews = () => {
                     <div className="card card-compact bg-base-100 shadow-xl mx-4">
                         <div className="card-body">
                             <div className='flex gap-2'>
-                                <div><img className='rounded-full' src={review.reviewer_image} alt={review.reviewer_name} /></div>
+                                <div className='w-full'><img className='rounded-full' src={review.reviewer_image} alt={review.reviewer_name} /></div>
                                 <div>
                                     <h2 className="card-title">{review.reviewer_name}</h2>
                                     <p>{review.review_description}</p>

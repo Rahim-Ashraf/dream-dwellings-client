@@ -9,10 +9,13 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null)
 
 const Provider = ({ children }) => {
+    const axiosPublic = useAxiosPublic();
+
     const [loading, setLoading] = useState(true)
     const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
@@ -52,26 +55,25 @@ const Provider = ({ children }) => {
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-            // const userEmail = currentUser?.email;
-            // const loggedUser = { email: userEmail };
             setUser(currentUser);
             setLoading(false);
-            // if (currentUser) {
-            //     axios.post('https://blog-zone-server.vercel.app/jwt', loggedUser, { withCredentials: true })
-            //         .then()
-            // }
-            // else {
-            //     axios.post('https://blog-zone-server.vercel.app/logout', user?.email, {
-            //         withCredentials: true
-            //     })
-            //         .then()
-            // }
+            if (currentUser) {
+                const jwtUser = { email: currentUser.email };
+                axiosPublic.post('/jwt', jwtUser)
+                    .then((res) => {
+                        localStorage.setItem("access-token", res.data.token)
+                    })
+            }
+            else {
+                localStorage.removeItem("access-token")
+            }
+            setLoading(false);
         });
         return () => {
             unSubscribe()
         }
 
-    }, [auth])
+    }, [auth, axiosPublic])
 
     const data = {
         emailRegister,
