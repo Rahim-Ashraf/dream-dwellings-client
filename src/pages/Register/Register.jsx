@@ -14,8 +14,10 @@ const Register = () => {
     const { emailRegister, updateUser } = useAuth();
     const [showPass, setShowPass] = useState(true);
     const [registerError, setRegisterError] = useState("")
+    const [regisLoading, setRegisLoading] = useState(false)
 
     const handleEmailRegister = async (e) => {
+        setRegisLoading(true);
         e.preventDefault();
         setRegisterError("");
         const email = e.target.email.value;
@@ -52,6 +54,7 @@ const Register = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                setRegisLoading(false);
 
                 axiosPublic.post("/users", { email: res.user.email, userName: name })
                 navigate("/")
@@ -71,25 +74,25 @@ const Register = () => {
                 <form onSubmit={handleEmailRegister}>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Name</span>
+                            <span className="label-text font-semibold">Name</span>
                         </label>
                         <input type="text" name="name" placeholder="Name" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Photo</span>
+                            <span className="label-text font-semibold">Photo</span>
                         </label>
-                        <input type="file" name="photo" placeholder="Photo" className="input input-bordered" required />
+                        <input type="file" name="photo" placeholder="Photo" className="file-input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Email</span>
+                            <span className="label-text font-semibold">Email</span>
                         </label>
                         <input type="email" name="email" placeholder="email" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Password</span>
+                            <span className="label-text font-semibold">Password</span>
                         </label>
                         <div className="relative">
                             <span onClick={() => setShowPass(!showPass)} className="absolute right-2 top-4">{showPass ? <FaEye className="cursor-pointer w-10" /> : <IoMdEyeOff className="cursor-pointer w-10" />}</span>
@@ -100,14 +103,14 @@ const Register = () => {
                         {registerError}
                     </p>
                     <div className="form-control mt-6">
-                        <button type="submit" className="btn bg-[#0055ff] text-white">Register</button>
+                        <button type="submit" disabled={regisLoading} className="btn bg-[#0055ff] text-white">Register</button>
                     </div>
                 </form>
 
 
                 <div className="flex justify-between">
                     <div>
-                        <span className="font-semibold">Alredy Have an Account?</span>
+                        <span className="font-bold">Alredy Have an Account?</span>
                         <Link to="/login" className="text-blue-600 font-bold"> Login</Link>
                     </div>
                     <div>

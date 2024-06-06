@@ -20,10 +20,14 @@ const Navbar = () => {
     }
 
     const menu = <>
-        <NavLink to="/" className={({ isActive }) => isActive ? "text-gray-600 font-bold" : "font-bold"
+        <NavLink to="/" className={({ isActive }) => isActive ? "font-bold" : "text-gray-500 font-bold"
         }>Home</NavLink>
-        <NavLink to="/all-properties" className={({ isActive }) => isActive ? "ml-4 text-gray-600 font-bold" : "ml-4 font-bold"
-        }>All properties</NavLink>
+        {user && <>
+            <NavLink to="/all-properties" className={({ isActive }) => isActive ? "ml-4 font-bold" : "text-gray-500 ml-4 font-bold"
+            }>All properties</NavLink>
+            <NavLink to={dbUser?.role === "admin" ? "/admin-dashboard/my-profile" : dbUser?.role === "agent" ? "/agent-dashboard/my-profile" : "/dashboard/my-profile"} className={({ isActive }) => isActive ? "ml-4 font-bold" : "text-gray-500 ml-4 font-bold"
+            }>Dashboard</NavLink>
+        </>}
     </>
     return (
         <div className="navbar bg-base-100">
@@ -38,12 +42,13 @@ const Navbar = () => {
                 </div>
                 <Link to="/" className="btn btn-ghost text-xl font-black">Dream <span className="text-[#0055ff]">Dwellings</span></Link>
             </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    {menu}
-                </ul>
-            </div>
+
             <div className="navbar-end">
+                <div className="hidden lg:flex mr-8">
+                    <ul className="menu menu-horizontal px-1">
+                        {menu}
+                    </ul>
+                </div>
                 {user ? <details className="dropdown dropdown-end">
                     <summary tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
@@ -51,15 +56,10 @@ const Navbar = () => {
                         </div>
                     </summary >
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><NavLink to={dbUser?.role === "admin" ? "/admin-dashboard" : dbUser?.role === "agent" ? "/agent-dashboard" : "/dashboard"} className={({ isActive }) => isActive ? "ml-4 text-[#0066ff] font-bold text-center btn btn-sm btn-ghost" : "ml-4 text-[#0055ff] font-bold text-center btn btn-sm btn-ghost"
-                        }>Dashboard</NavLink></li>
                         <li><button onClick={handleLogout} className="btn btn-error text-white">Logout</button></li>
                     </ul>
                 </details>
-                    : <div className="flex">
-                        <Link to="/register"><button className="ml-4 text-[#0055ff] font-bold">Register</button></Link>
-                        <Link to="/login"><button className="ml-4 text-[#0055ff] font-bold">Login</button></Link>
-                    </div>}
+                    : <Link to="/login"><button className="ml-4 btn bg-[#0055ff] text-white font-bold">Login</button></Link>}
             </div>
 
         </div>

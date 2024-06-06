@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./../../../hooks/useAxiosPublic"
 import { Link } from "react-router-dom";
+import { FaLocationDot } from "react-icons/fa6";
 
 const Advertisements = () => {
     const axiosPublic = useAxiosPublic()
@@ -17,14 +18,14 @@ const Advertisements = () => {
             {/* advertisement cards */}
             {advertisements.map(advertisement => <div key={advertisement._id} className="card card-compact bg-base-100 shadow-xl">
                 <figure><img src={advertisement.property_image} alt="" /></figure>
-                <div className="flex justify-between gap-4 p-4">
+                <div className="flex justify-between gap-4 p-2">
                     <div>
-                        <p>{advertisement.price_range}</p>
-                        <p>{advertisement.property_location}</p>
-                        <p>{advertisement.price_range}</p>
+                        <h2 className="card-title"><FaLocationDot/> {advertisement.property_location}</h2>
+                        <p className="font-bold">Price Range: <span className="text-[#0066ff]">{advertisement.price_range}</span></p>
+                        <p className="font-semibold">Status: {advertisement.verification_status}</p>
                     </div>
                     <div className="my-auto">
-                        <Link to={`/advertisement-details/${advertisement._id}`}><button className="btn bg-[#0055ff] text-white">Details</button></Link>
+                        <Link to={`/details/${advertisement.property_id}`}><button className="btn bg-[#0055ff] text-white">Details</button></Link>
                     </div>
                 </div>
             </div>)}

@@ -89,13 +89,13 @@ const Login = () => {
                 <form onSubmit={handleEmailLogin}>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Email</span>
+                            <span className="label-text font-semibold">Email</span>
                         </label>
                         <input type="email" name="email" placeholder="email" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Password</span>
+                            <span className="label-text font-semibold">Password</span>
                         </label>
                         <input type="password" name="password" placeholder="password" className="input input-bordered w-full" required />
                     </div>
@@ -105,13 +105,13 @@ const Login = () => {
                 </form>
                 <div>
                     <p className="flex gap-4">
-                        <span>Login with</span> <button onClick={handleGoogleLogin} className="text-4xl"><FcGoogle /></button>
+                        <span className="font-bold">Login with</span> <button onClick={handleGoogleLogin} className="text-4xl"><FcGoogle /></button>
                         <button onClick={handleGithubLogin} className="text-blue-600 text-4xl"><FaGithub /></button>
                     </p>
                 </div>
                 <div className="flex justify-between">
                     <div>
-                        <span className="font-semibold">New here?</span>
+                        <span className="font-bold">New here?</span>
                         <Link to="/register" className="text-blue-600 font-bold"> Register Now</Link>
                     </div>
                     <div>

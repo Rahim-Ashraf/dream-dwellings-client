@@ -15,25 +15,24 @@ const Reviews = () => {
     })
 
     return (
-        <div>
-            <swiper-container slides-per-view="3" loop="true" autoplay="true">
-                {latestReviews.map(review => <swiper-slide key={review._id}>
-                    <div className="card card-compact bg-base-100 shadow-xl mx-4">
-                        <div className="card-body">
-                            <div className='flex gap-2'>
-                                <div className='w-full'><img className='rounded-full' src={review.reviewer_image} alt={review.reviewer_name} /></div>
-                                <div>
-                                    <h2 className="card-title">{review.reviewer_name}</h2>
-                                    <p>{review.review_description}</p>
-                                    <p>{review.property_title}</p>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
+            {
+                latestReviews.map(review => <div key={review._id} className="card shadow-xl border ">
+                    <div className="p-4">
+                        <div className='text-center'>
+                            <div className='max-w-20 mx-auto'><img className='rounded-[50%]' src={review.reviewer_image} alt={review.reviewer_name} /></div>
+                            <h2 className="font-bold text-xl">{review.reviewer_name}</h2>
+                            <div>
+                                <h2 className="font-semibold text-lg mb-4">{review.property_title}</h2>
+                                <div className='flex gap-2'>
+                                    <h2 className='font-semibold'>Review:</h2>
+                                    <p className='text-left'>{review.review_description}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </swiper-slide>)}
-
-            </swiper-container>
-        </div>
+                </div>)}
+        </div >
     );
 };
 
