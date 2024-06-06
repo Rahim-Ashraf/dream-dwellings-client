@@ -26,6 +26,7 @@ import AdminDashboard from "../pages/AdminDashboard/AdminDashboard";
 import ManageReviews from "../pages/AdminDashboard/ManageReviews/ManageReviews";
 import ManageProperties from "../pages/AdminDashboard/ManageProperties/ManageProperties";
 import ManageUsers from "../pages/AdminDashboard/ManageUsers/ManageUsers";
+import AdvertiseProperty from "../pages/AdminDashboard/AdvertiseProperty/AdvertiseProperty";
 
 
 const router = createBrowserRouter([
@@ -117,6 +118,10 @@ const router = createBrowserRouter([
                     {
                         path: "/admin-dashboard/manage-reviews",
                         element: <AdminRoute><ManageReviews></ManageReviews></AdminRoute>
+                    },
+                    {
+                        path: "/admin-dashboard/advertise-property",
+                        element: <AdminRoute><AdvertiseProperty></AdvertiseProperty></AdminRoute>
                     },
                 ]
             },

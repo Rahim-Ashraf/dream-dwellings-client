@@ -12,6 +12,8 @@ const AdminNav = () => {
             }>Manage Users</NavLink>
             <NavLink to="/admin-dashboard/manage-reviews" className={({ isActive }) => isActive ? "text-gray-100 font-bold" : "font-bold"
             }>Manage reviews</NavLink>
+            <NavLink to="/admin-dashboard/advertise-property" className={({ isActive }) => isActive ? "text-gray-100 font-bold" : "font-bold"
+            }>Advertise property</NavLink>
         </div>
     );
 };
