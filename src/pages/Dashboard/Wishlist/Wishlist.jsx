@@ -15,7 +15,7 @@ const Wishlist = () => {
             return res.data
         }
     })
-    
+
     const handleRemoveWishlist = id => {
         Swal.fire({
             title: "Are you sure?",
@@ -44,21 +44,33 @@ const Wishlist = () => {
     }
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {wishlists.map(wishlist => <div key={wishlist._id} className="card card-compact bg-base-100 shadow-xl">
                 <figure><img src={wishlist.property_image} alt="" /></figure>
-                <div className="flex justify-between gap-4 p-4">
-                    <div>
-                        <p>{wishlist.price_range}</p>
-                        <p>{wishlist.property_location}</p>
-                        <p>{wishlist.agent_name}</p>
-                        <p>{wishlist.agent_image}</p>
-                        <p>{wishlist.verification_status}</p>
+                <div className="card-body w-full">
+                    <h2 className="text-2xl font-bold mb-4">{wishlist.property_title}</h2>
+                    <div className="flex justify-between items-center font-bold">
+                        <div>
+                            <p className="text-gray-600">Price Range</p>
+                            <p>${wishlist.price_range}</p>
+                        </div>
+                        <div>
+                            <p className="text-gray-600">Location</p>
+                            <p>{wishlist.property_location}</p>
+                        </div>
+                        <div>
+                            <p className="text-gray-600">Status</p>
+                            <p className="text-emerald-600">{wishlist.verification_status}</p>
+                        </div>
                     </div>
-                    <div className="my-auto">
-                        <Link to={`/make-offer/${wishlist.property_id}`}><button className="btn bg-[#0055ff] text-white">Make an offer</button></Link>
-                        <button onClick={() => handleRemoveWishlist(wishlist._id)} className="btn">Remove</button>
+                    <div className="divider"></div>
+                    <div className="flex justify-between items-center">
+                        <p className="font-bold">Agent: {wishlist.agent_name}</p>
+                        <div className="max-w-10"><img className="rounded-[50%]" src={wishlist.agent_image} alt="" /></div>
                     </div>
+                    <div className="divider"></div>
+                    <Link to={`/dashboard/make-offer/${wishlist.property_id}`}><button className="btn bg-[#0055ff] text-white w-full">Make an offer</button></Link>
+                    <button onClick={() => handleRemoveWishlist(wishlist._id)} className="btn bg-red-600 text-white">Remove</button>
                 </div>
             </div>)}
         </div>

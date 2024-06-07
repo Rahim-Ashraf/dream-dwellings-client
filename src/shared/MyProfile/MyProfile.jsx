@@ -15,14 +15,14 @@ const MyProfile = () => {
     })
 
     return (
-        <div>
+        <div className="text-center bg-[#0055ff] bg-opacity-20 rounded-lg p-6">
             <div className="avatar">
                 <div className="w-24 rounded-full">
                     <img src={user.photoURL} />
                 </div>
             </div>
             <h2 className="font-bold text-2xl">Name: {user.displayName}</h2>
-            {dbUser?.role && <h2>{dbUser.role}</h2>}
+            {dbUser?.role && <h2 className="font-bold">Role: {dbUser.role}</h2>}
         </div>
     );
 };

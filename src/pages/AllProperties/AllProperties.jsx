@@ -11,8 +11,16 @@ const AllProperties = () => {
     useEffect(() => {
         axiosPublic.get("/verified-properties")
             .then(res => {
-                setProperties(res.data)
-                setAllProperties(res.data);
+                axiosPublic.get("/fraud-users")
+                    .then(userRes => {
+                        const propertyData = res.data;
+                        const userData = userRes.data;
+                        const fraudEmails = userData.map(user => user.email)
+                        const filterdProperties = propertyData.filter(property => !fraudEmails.includes(property.agent_email));
+                        setProperties(filterdProperties)
+                        setAllProperties(filterdProperties);
+                    })
+
             });
     }, [axiosPublic]);
 
@@ -73,12 +81,11 @@ const AllProperties = () => {
             </div>
             <h1 className="text-5xl font-bold text-center text-[#0055ff] my-6">All properties </h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {/* advertisement cards */}
                 {properties.map(property => <div key={property._id} className="card card-compact bg-base-100 shadow-xl">
                     <figure className="max-h-60"><img src={property.property_image} alt="" /></figure>
                     <div className="p-4">
                         <div>
-                            <h2 className="card-title">{property.property_title}</h2>
+                            <h2 className="font-bold text-2xl mb-4">{property.property_title}</h2>
                             <div className="flex justify-between">
                                 <div className="flex gap-2 items-center text-lg font-bold">
                                     <FaLocationDot />

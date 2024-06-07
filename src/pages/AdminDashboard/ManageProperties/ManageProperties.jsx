@@ -54,7 +54,7 @@ const ManageProperties = () => {
                                 {property.verification_status === "pending" ? <>
                                     <button onClick={() => handleAccept(property)} className="btn btn-sm bg-[#0055ff] text-white">Accept</button>
                                     <button onClick={() => handleReject(property)} className="btn btn-errorf btn-sm btn-error">Reject</button>
-                                </> : <h2 className="font-bold">{property.verification_status}</h2>}
+                                </> : <h2 className={property.verification_status === "verified" ? "text-emerald-600 font-bold" : property.verification_status === "rejected" ? "text-red-600 font-bold" : ""}>{property.verification_status}</h2>}
                             </td>
                         </tr>)
                     }

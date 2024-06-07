@@ -2,6 +2,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 
 const MakeOffer = () => {
@@ -48,7 +49,14 @@ const MakeOffer = () => {
             verification_status: "pending"
         }
         axiosSecure.post("/make-offer", data)
-            .then(res => console.log(res.data))
+            .then(res => {
+                console.log(res.data);
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Offer send",
+                })
+            })
     }
 
     return (

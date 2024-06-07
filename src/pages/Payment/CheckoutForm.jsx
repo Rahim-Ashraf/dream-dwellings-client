@@ -10,7 +10,8 @@ import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ singlePropertyBought }) => {
     const axiosSecure = useAxiosSecure()
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [payLoading, setPayLoading] = useState(false);
 
     const stripe = useStripe();
     const elements = useElements()
@@ -19,7 +20,7 @@ const CheckoutForm = ({ singlePropertyBought }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("sdgsdfgsf")
+        setPayLoading(true);
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card: elements.getElement(CardElement),
@@ -28,6 +29,7 @@ const CheckoutForm = ({ singlePropertyBought }) => {
         if (error) {
             setPaymentError(error.message)
             setPaymentSuccess("")
+            setPayLoading(false);
         } else {
             const res = await axiosSecure.post("/payment", { amount: singlePropertyBought.offered_amount * 100 })
             const { clientSecret, paymentIntentId } = await res.data;
@@ -37,9 +39,11 @@ const CheckoutForm = ({ singlePropertyBought }) => {
             if (confirmPayment.error) {
                 setPaymentSuccess("")
                 setPaymentError(confirmPayment.error.message)
+                setPayLoading(false);
             } else {
                 console.log("client secret" + clientSecret, "payment intent id" + paymentIntentId)
                 setPaymentError("");
+                setPayLoading(false);
                 Swal.fire({
                     position: "center",
                     icon: "success",
@@ -58,7 +62,7 @@ const CheckoutForm = ({ singlePropertyBought }) => {
         <form className='w-full lg:w-1/2 mx-auto' onSubmit={handleSubmit}>
             <CardElement />
             {/* <PaymentElement /> */}
-            <button type="submit" disabled={!stripe || !elements} className='btn w-full mt-2 bg-[#0055ff] text-white'>
+            <button type="submit" disabled={!stripe || !elements || payLoading} className='btn w-full mt-2 bg-[#0055ff] text-white'>
                 Pay
             </button>
             {paymentError && <div>{paymentError}</div>}

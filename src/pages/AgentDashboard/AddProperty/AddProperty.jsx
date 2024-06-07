@@ -2,14 +2,17 @@ import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 
 const AddProperty = () => {
     const { user } = useAuth();
-    const axiosSecure = useAxiosSecure()
+    const axiosSecure = useAxiosSecure();
+    const [addPropertyLoading, setAddPropertyLoading] = useState(false);
 
     const handleAddProperty = async (e) => {
         e.preventDefault();
+        setAddPropertyLoading(true);
         const form = e.target;
         const property_title = form.property_title.value;
         const property_location = form.property_location.value;
@@ -38,6 +41,7 @@ const AddProperty = () => {
         axiosSecure.post("/properties", data)
             .then(res => {
                 console.log(res.data)
+                setAddPropertyLoading(false);
                 Swal.fire({
                     position: "center",
                     icon: "success",
@@ -45,6 +49,11 @@ const AddProperty = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                form.property_title.value = "";
+                form.property_location.value = "";
+                form.price_range_from.value = "";
+                form.price_range_to.value = "";
+                form.property_image.value = "";
             })
     }
 
@@ -53,58 +62,61 @@ const AddProperty = () => {
             <form onSubmit={handleAddProperty} className="card-body" >
                 <div className="form-control w-full">
                     <label className="label">
-                        <span className="label-text">Property title</span>
+                        <span className="label-text font-semibold">Property title</span>
                     </label>
                     <input name="property_title" placeholder="Property Title" className="input input-bordered" required />
 
                 </div>
                 <div className="form-control w-full">
                     <label className="label">
-                        <span className="label-text">Property Location</span>
+                        <span className="label-text font-semibold">Property Location</span>
                     </label>
                     <input name="property_location" placeholder="Property Location" className="input input-bordered h-16" required />
 
                 </div>
-                <div className="md:flex gap-6">
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Price Range from</span>
-                        </label>
-                        <input type="number" name="price_range_from" placeholder="Min price" className="input input-bordered" required />
+                <div>
+                    <h4 className="font-bold text-">Price Range:</h4>
+                    <div className="md:flex gap-6">
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text font-semibold"> from</span>
+                            </label>
+                            <input type="number" name="price_range_from" placeholder="Min price" className="input input-bordered" required />
 
-                    </div>
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">To</span>
-                        </label>
-                        <input type="number" name="price_range_to" placeholder="Max Price" className="input input-bordered" required />
+                        </div>
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text font-semibold">To</span>
+                            </label>
+                            <input type="number" name="price_range_to" placeholder="Max Price" className="input input-bordered" required />
 
+                        </div>
                     </div>
                 </div>
                 <div className="form-control w-full">
                     <label className="label">
-                        <span className="label-text">Property image</span>
+                        <span className="label-text font-semibold">Property image</span>
                     </label>
                     <input type="file" name="property_image" className="file-input file-input-bordered h-16" required />
                 </div>
                 <div className="md:flex gap-6">
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Agent name</span>
+                            <span className="label-text font-semibold">Agent name</span>
                         </label>
                         <input name="agent_name" defaultValue={user.displayName} disabled className="input input-bordered" required />
 
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Agent email</span>
+                            <span className="label-text font-semibold">Agent email</span>
                         </label>
                         <input name="agent_email" defaultValue={user.email} disabled className="input input-bordered" required />
 
                     </div>
                 </div>
 
-                <input className="btn bg-[#0055ff] text-white" type="submit" value="Add Property" />
+                <input className="btn bg-[#0055ff] text-white" type="submit" disabled={addPropertyLoading} value="Add Property" />
             </form>
         </div>
     );

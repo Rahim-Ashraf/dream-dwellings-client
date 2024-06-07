@@ -15,21 +15,28 @@ const ManageUsers = () => {
     })
 
     const handleMakeAdmin = (user) => {
-        axiosSecure.patch(`users?id=${user._id}`, { role: "admin" })
+        axiosSecure.patch(`/users?id=${user._id}`, { role: "admin" })
             .then(res => {
                 console.log(res.data)
                 refetch();
             })
     }
     const handleMakeagent = (user) => {
-        axiosSecure.patch(`users?id=${user._id}`, { role: "agent" })
+        axiosSecure.patch(`/users?id=${user._id}`, { role: "agent" })
             .then(res => {
                 console.log(res.data)
                 refetch();
             })
     }
     const handleDeleteUser = (user) => {
-        axiosSecure.delete(`users?id=${user._id}`)
+        axiosSecure.delete(`/users?id=${user._id}`)
+            .then(res => {
+                console.log(res.data)
+                refetch();
+            })
+    }
+    const handleMarkFraud = (user) => {
+        axiosSecure.patch(`/fraud-users?id=${user._id}`, { is_fraud: "fraud" })
             .then(res => {
                 console.log(res.data)
                 refetch();
@@ -58,14 +65,16 @@ const ManageUsers = () => {
                             <td>{user.email}</td>
                             <td className="font-bold">{user.role ? user.role : "User"}</td>
                             <td className="space-y-1">
-                                <div className="flex justify-end gap-2">
-                                    <button onClick={() => handleMakeAdmin(user)} className="btn btn-sm bg-[#0055ff] text-white">Make Admin</button>
-                                    <button onClick={() => handleMakeagent(user)} className="btn btn-errorf btn-sm bg-[#0055ff] text-white">Make Agent</button>
-                                </div>
-                                <div className="flex justify-end gap-2">
-                                    {user.role === "agent" && <button className="btn btn-errorf btn-sm btn-error">Mark as fraud</button>}
-                                    <button onClick={() => handleDeleteUser(user)} className="btn btn-errorf btn-sm btn-error">Delete User</button>
-                                </div>
+                                {user.is_fraud ? <h4 className="font-bold text-red">Fraud</h4> : <>
+                                    <div className="flex justify-end gap-2">
+                                        <button onClick={() => handleMakeAdmin(user)} className="btn btn-sm bg-[#0055ff] text-white">Make Admin</button>
+                                        <button onClick={() => handleMakeagent(user)} className="btn btn-errorf btn-sm bg-[#0055ff] text-white">Make Agent</button>
+                                    </div>
+                                    <div className="flex justify-end gap-2">
+                                        {user.role === "agent" && <button onClick={() => handleMarkFraud(user)} className="btn btn-errorf btn-sm btn-error">Mark as fraud</button>}
+                                        <button onClick={() => handleDeleteUser(user)} className="btn btn-errorf btn-sm btn-error">Delete User</button>
+                                    </div>
+                                </>}
                             </td>
                         </tr>)
                     }

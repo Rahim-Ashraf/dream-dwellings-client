@@ -72,65 +72,63 @@ const Details = () => {
     }
 
     return (
-        <div>
-            <div className="card shadow-xl p-2 md:p-4">
-                <div className="lg:flex">
-                    <div className="w-full">
-                        <img className="rounded-lg" src={propertyDetails?.property_image} alt="" />
-                    </div>
-                    <div className="card-body w-full">
-                        <h2 className="text-4xl font-bold mb-4">{propertyDetails?.property_title}</h2>
-                        <div className="flex justify-between items-center font-bold">
-                            <div>
-                                <p className="text-gray-600">Price Range</p>
-                                <p>${propertyDetails?.price_range}</p>
-                            </div>
-                            <div>
-                                <p className="text-gray-600">Location</p>
-                                <p>{propertyDetails?.property_location}</p>
-                            </div>
-                            <div>
-                                <p className="text-gray-600">Status</p>
-                                <p className="text-emerald-600">{propertyDetails?.verification_status}</p>
-                            </div>
-                        </div>
-                        <div className="divider"></div>
-                        <div className="flex justify-between">
-                            <p className="font-bold">Agent: {propertyDetails?.agent_name}</p>
-                            <div className="max-w-20"><img className="rounded-[50%]" src={propertyDetails?.property_image} alt="" /></div>
-                        </div>
-                        <div className="divider"></div>
-                        <button onClick={() => handleAddToWishlist(propertyDetails)} className="btn bg-[#E2537A] text-white">Add to wishlist</button>
-                        <button className="btn bg-[#0055ff] text-white" onClick={() => document.getElementById('my_modal_1').showModal()}>Add a review</button>
-                        <dialog id="my_modal_1" className="modal">
-                            <div className="modal-box w-full">
-                                <form onSubmit={handleAddReview} method="dialog" className="w-full border">
-                                    <textarea name="review_description" className="textarea textarea-bordered h-40 w-full" placeholder="Review" required></textarea>
-                                    <br />
-                                    <input type="submit" value="Add Review" className="btn w-full bg-[#E2537A] text-white" />
-                                </form>
-                            </div>
-                        </dialog>
-                    </div>
+        <div className="card shadow-xl p-2 md:p-4">
+            <div className="lg:flex">
+                <div className="w-full">
+                    <img className="rounded-lg" src={propertyDetails?.property_image} alt="" />
                 </div>
-                <div className="divider"></div>
-                <div>
-                    <h2 className="text-4xl text-center font-bold mb-2">Reviews</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {reviews.map(review => <div key={review._id}>
-                            <div className="card card-compact shadow-xl bg-[#0066ff] bg-opacity-5">
-                                <div className="card-body">
-                                    <div className='flex gap-2'>
-                                        <div className=""><img className='rounded-full max-w-14' src={review.reviewer_image} alt={review.reviewer_name} /></div>
-                                        <div>
-                                            <h2 className="card-title">{review.reviewer_name}</h2>
-                                            <p>{review.review_description}</p>
-                                        </div>
+                <div className="card-body w-full">
+                    <h2 className="text-4xl font-bold mb-4">{propertyDetails?.property_title}</h2>
+                    <div className="flex justify-between items-center font-bold">
+                        <div>
+                            <p className="text-gray-600">Price Range</p>
+                            <p>${propertyDetails?.price_range}</p>
+                        </div>
+                        <div>
+                            <p className="text-gray-600">Location</p>
+                            <p>{propertyDetails?.property_location}</p>
+                        </div>
+                        <div>
+                            <p className="text-gray-600">Status</p>
+                            <p className="text-emerald-600">{propertyDetails?.verification_status}</p>
+                        </div>
+                    </div>
+                    <div className="divider"></div>
+                    <div className="flex justify-between">
+                        <p className="font-bold">Agent: {propertyDetails?.agent_name}</p>
+                        <div className="max-w-20"><img className="rounded-[50%]" src={propertyDetails?.agent_image} alt="" /></div>
+                    </div>
+                    <div className="divider"></div>
+                    <button onClick={() => handleAddToWishlist(propertyDetails)} className="btn bg-[#E2537A] text-white">Add to wishlist</button>
+                    <button className="btn bg-[#0055ff] text-white" onClick={() => document.getElementById('my_modal_1').showModal()}>Add a review</button>
+                    <dialog id="my_modal_1" className="modal">
+                        <div className="modal-box w-full">
+                            <form onSubmit={handleAddReview} method="dialog" className="w-full border">
+                                <textarea name="review_description" className="textarea textarea-bordered h-40 w-full" placeholder="Review" required></textarea>
+                                <br />
+                                <input type="submit" value="Add Review" className="btn w-full bg-[#E2537A] text-white" />
+                            </form>
+                        </div>
+                    </dialog>
+                </div>
+            </div>
+            <div className="divider"></div>
+            <div>
+                <h2 className="text-4xl text-center font-bold mb-2">Reviews</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {reviews.map(review => <div key={review._id}>
+                        <div className="card card-compact shadow-xl bg-[#0066ff] bg-opacity-5">
+                            <div className="card-body">
+                                <div className='flex gap-2'>
+                                    <div className=""><img className='rounded-full max-w-14' src={review.reviewer_image} alt={review.reviewer_name} /></div>
+                                    <div>
+                                        <h2 className="card-title">{review.reviewer_name}</h2>
+                                        <p>{review.review_description}</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>)}
-                    </div>
+                        </div>
+                    </div>)}
                 </div>
             </div>
         </div>

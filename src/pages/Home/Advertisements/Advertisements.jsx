@@ -8,8 +8,16 @@ const Advertisements = () => {
     const { data: advertisements = [] } = useQuery({
         queryKey: ["advertisement"],
         queryFn: async () => {
-            const res = await axiosPublic.get("/advertisements")
-            return res.data
+            const res = await axiosPublic.get("/advertisements");
+            axiosPublic.get("/fraud-users")
+                .then(userRes => {
+                    const propertyData = res.data;
+                    const userData = userRes.data;
+                    const fraudEmails = userData.map(user => user.email)
+                    const filterdProperties = propertyData.filter(property => !fraudEmails.includes(property.agent_email));
+                    return filterdProperties;
+                })
+
         }
     })
 
@@ -20,7 +28,7 @@ const Advertisements = () => {
                 <figure><img src={advertisement.property_image} alt="" /></figure>
                 <div className="flex justify-between gap-4 p-2">
                     <div>
-                        <h2 className="card-title"><FaLocationDot/> {advertisement.property_location}</h2>
+                        <h2 className="card-title"><FaLocationDot /> {advertisement.property_location}</h2>
                         <p className="font-bold">Price Range: <span className="text-[#0066ff]">{advertisement.price_range}</span></p>
                         <p className="font-semibold">Status: {advertisement.verification_status}</p>
                     </div>

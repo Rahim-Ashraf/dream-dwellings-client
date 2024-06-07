@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { FaLocationDot } from "react-icons/fa6";
 
 
 const MySoldProperties = () => {
@@ -17,16 +18,19 @@ const MySoldProperties = () => {
 
     return (
         <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
                 {
                     mySoldProperties.map(property => <div key={property._id} className="card card-compact bg-base-100 shadow-xl">
                         <figure><img src={property.property_image} alt="" /></figure>
                         <div className="p-4">
                             <h2 className="card-title">{property.property_title}</h2>
-                            <p>Location: {property.property_location}</p>
+                            <div className="flex items-center gap-2">
+                                <FaLocationDot />
+                                <p className="font-semibold">{property.property_location}</p>
+                            </div>
                             <p>Buyer Name: {property.buyer_name}</p>
                             <p>Buyer Email: {property.buyer_email}</p>
-                            <p>Sold Price: {property.offered_amount}</p>
+                            <p className="font-semibold">Sold Price: <span className="text-[#0055ff]">${property.offered_amount}</span></p>
                         </div>
                     </div>)
                 }

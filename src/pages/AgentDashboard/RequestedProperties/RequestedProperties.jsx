@@ -21,9 +21,9 @@ const RequestedProperties = () => {
                 axiosSecure.patch(`/accept-property?id=${property._id}`, { verification_status: "accepted" })
                     .then(res => {
                         console.log(res.data)
+                        refetch();
                     })
-            })
-        refetch()
+            });
     }
     const handleReject = (id) => {
         axiosSecure.patch(`/accept-property?id=${id}`, { verification_status: "rejected" })

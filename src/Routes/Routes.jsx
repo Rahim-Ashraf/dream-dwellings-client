@@ -66,7 +66,11 @@ const router = createBrowserRouter([
                     {
                         path: "/dashboard/my-reviews",
                         element: <PrivateRoute><MyReviews></MyReviews></PrivateRoute>
-                    }
+                    },
+                    {
+                        path: "/dashboard/make-offer/:id",
+                        element: <PrivateRoute><MakeOffer></MakeOffer></PrivateRoute>
+                    },
                 ]
             },
             {
@@ -124,10 +128,6 @@ const router = createBrowserRouter([
                         element: <AdminRoute><AdvertiseProperty></AdvertiseProperty></AdminRoute>
                     },
                 ]
-            },
-            {
-                path: "/make-offer/:id",
-                element: <PrivateRoute><MakeOffer></MakeOffer></PrivateRoute>
             },
             {
                 path: "/payment/:id",

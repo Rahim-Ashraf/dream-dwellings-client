@@ -3,12 +3,15 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 
 const PropertyUpdate = () => {
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
-    const { data: property = {} } = useQuery({
+    const [updatePropertyLoading, setUpdatePropertyLoading] = useState(false);
+
+    const { data: property = {}, refetch } = useQuery({
         queryKey: ["property"],
         queryFn: async () => {
             const res = await axiosSecure.get(`/property-details?id=${id}`);
@@ -21,6 +24,8 @@ const PropertyUpdate = () => {
 
     const handleUpdateProperty = async (e) => {
         e.preventDefault();
+        setUpdatePropertyLoading(true);
+
         const form = e.target;
         const property_title = form.property_title.value;
         const property_location = form.property_location.value;
@@ -43,6 +48,7 @@ const PropertyUpdate = () => {
         axiosSecure.patch(`/properties?id=${property._id}`, data)
             .then(res => {
                 console.log(res.data)
+                setUpdatePropertyLoading(false);
                 Swal.fire({
                     position: "center",
                     icon: "success",
@@ -50,6 +56,7 @@ const PropertyUpdate = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                refetch();
             })
     }
 
@@ -58,58 +65,61 @@ const PropertyUpdate = () => {
             <form onSubmit={handleUpdateProperty} className="card-body" >
                 <div className="form-control w-full">
                     <label className="label">
-                        <span className="label-text">Property title</span>
+                        <span className="label-text font-semibold">Property title</span>
                     </label>
                     <input name="property_title" defaultValue={property.property_title} className="input input-bordered" required />
 
                 </div>
                 <div className="form-control w-full">
                     <label className="label">
-                        <span className="label-text">Property Location</span>
+                        <span className="label-text font-semibold">Property Location</span>
                     </label>
                     <input name="property_location" defaultValue={property.property_location} className="input input-bordered h-16" required />
 
                 </div>
-                <div className="md:flex gap-6">
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Price Range from</span>
-                        </label>
-                        <input type="number" name="price_range_from" defaultValue={price_range_from} className="input input-bordered" required />
+                <div>
+                    <h4 className="font-bold">Price Range</h4>
+                    <div className="md:flex gap-6">
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text font-semibold">from</span>
+                            </label>
+                            <input type="number" name="price_range_from" defaultValue={price_range_from} className="input input-bordered" required />
 
-                    </div>
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">To</span>
-                        </label>
-                        <input type="number" name="price_range_to" defaultValue={price_range_to} className="input input-bordered" required />
+                        </div>
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text font-semibold">To</span>
+                            </label>
+                            <input type="number" name="price_range_to" defaultValue={price_range_to} className="input input-bordered" required />
 
+                        </div>
                     </div>
                 </div>
                 <div className="form-control w-full">
                     <label className="label">
-                        <span className="label-text">Property image</span>
+                        <span className="label-text font-semibold">Property image</span>
                     </label>
                     <input type="file" name="property_image" className="file-input file-input-bordered h-16" required />
                 </div>
                 <div className="md:flex gap-6">
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Agent name</span>
+                            <span className="label-text font-semibold">Agent name</span>
                         </label>
                         <input name="agent_name" defaultValue={property.agent_name} disabled className="input input-bordered" required />
 
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Agent email</span>
+                            <span className="label-text font-semibold">Agent email</span>
                         </label>
                         <input name="agent_email" defaultValue={property.agent_email} disabled className="input input-bordered" required />
 
                     </div>
                 </div>
 
-                <input className="btn bg-[#0055ff] text-white" type="submit" value="Update Property" />
+                <input className="btn bg-[#0055ff] text-white" type="submit" disabled={updatePropertyLoading} value="Update Property" />
             </form>
         </div>
     );

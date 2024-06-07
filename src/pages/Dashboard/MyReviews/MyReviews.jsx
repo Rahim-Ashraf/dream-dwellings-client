@@ -43,19 +43,18 @@ const MyReviews = () => {
     }
 
     return (
-        <div>
-            {myReviews.map(review => <div key={review._id} className="card card-compact bg-base-100 shadow-xl mx-4">
+        <div className="space-y-4">
+            {myReviews.map(review => <div key={review._id} className="card card-compact  bg-emerald-600 bg-opacity-10 shadow-xl mx-4">
                 <div className="card-body">
-                    <div className='flex gap-2'>
-                        <div><img className='rounded-full max-w-10' src={review.reviewer_image} alt={review.reviewer_name} /></div>
-                        <div>
+                    <div>
+                        <div className="flex gap-4 items-center">
                             <h2 className="card-title">{review.property_title}</h2>
-                            <p>Agent: {review.agent_name}</p>
-                            <p>{review.review_description}</p>
-                            <p>Time: {review.date}</p>
+                            <p className="font-semibold">{review.date}</p>
                         </div>
+                        <p className="font-bold">Agent: {review.agent_name}</p>
+                        <p>{review.review_description}</p>
                     </div>
-                    <button onClick={() => handleReviewDelete(review._id)} className="btn">Delete</button>
+                    <button onClick={() => handleReviewDelete(review._id)} className="btn bg-red-600 text-white max-w-20">Delete</button>
                 </div>
             </div>)}
         </div>
