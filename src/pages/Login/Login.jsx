@@ -8,7 +8,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Login = () => {
     const axiosPublic = useAxiosPublic();
-    const { emailLogin, googleLogin, githubLogin } = useAuth();
+    const { emailLogin, googleLogin } = useAuth();
     const navigate = useNavigate();
     const location = useLocation()
 
@@ -62,27 +62,7 @@ const Login = () => {
             })
 
     }
-    const handleGithubLogin = () => {
-        githubLogin()
-            .then(() => {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Loged In Successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigate("/")
-            })
-            .catch(error => {
-                console.log(error)
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Login failed"
-                });
-            })
-    }
+
     return (
         <div data-aos="fade-up" data-aos-duration="2000" className="card mt-10 shrink-0 shadow-2xl bg-base-100 w-full md:w-2/3 lg:w-1/2 mx-auto">
             <div className="card-body">
@@ -106,7 +86,6 @@ const Login = () => {
                 <div>
                     <p className="flex gap-4">
                         <span className="font-bold">Login with</span> <button onClick={handleGoogleLogin} className="text-4xl"><FcGoogle /></button>
-                        <button onClick={handleGithubLogin} className="text-blue-600 text-4xl"><FaGithub /></button>
                     </p>
                 </div>
                 <div className="flex justify-between">

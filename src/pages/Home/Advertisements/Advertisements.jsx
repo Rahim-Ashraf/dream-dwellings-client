@@ -14,7 +14,7 @@ const Advertisements = () => {
             const userData = userRes.data;
             const fraudEmails = userData.map(user => user.email)
             const filterdProperties = advertiseData.filter(property => !fraudEmails.includes(property.agent_email));
-            console.log(filterdProperties)
+            // console.log(filterdProperties)
             return filterdProperties;
 
         }
