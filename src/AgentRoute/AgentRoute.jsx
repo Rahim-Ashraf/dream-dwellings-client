@@ -26,7 +26,7 @@ const AgentRoute = ({ children }) => {
                 loading || dbLoading ? <div className="w-full flex justify-center">
                     <span className="loading loading-spinner loading-lg flex justify-center items-center h-screen"></span>
                 </div> :
-                    user && dbUser?.role === "agent" ? children : <Navigate to={"/dashboard"}></Navigate>
+                    user && dbUser?.role === "agent" ? children : <Navigate to={"/"}></Navigate>
             }
         </div>
     );

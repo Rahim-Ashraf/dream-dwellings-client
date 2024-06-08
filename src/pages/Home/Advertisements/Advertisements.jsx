@@ -4,19 +4,18 @@ import { Link } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
 
 const Advertisements = () => {
-    const axiosPublic = useAxiosPublic()
+    const axiosPublic = useAxiosPublic();
     const { data: advertisements = [] } = useQuery({
         queryKey: ["advertisement"],
         queryFn: async () => {
             const res = await axiosPublic.get("/advertisements");
-            axiosPublic.get("/fraud-users")
-                .then(userRes => {
-                    const propertyData = res.data;
-                    const userData = userRes.data;
-                    const fraudEmails = userData.map(user => user.email)
-                    const filterdProperties = propertyData.filter(property => !fraudEmails.includes(property.agent_email));
-                    return filterdProperties;
-                })
+            const userRes = await axiosPublic.get("/fraud-users");
+            const advertiseData = res.data;
+            const userData = userRes.data;
+            const fraudEmails = userData.map(user => user.email)
+            const filterdProperties = advertiseData.filter(property => !fraudEmails.includes(property.agent_email));
+            console.log(filterdProperties)
+            return filterdProperties;
 
         }
     })

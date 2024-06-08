@@ -13,6 +13,19 @@ const AddProperty = () => {
     const handleAddProperty = async (e) => {
         e.preventDefault();
         setAddPropertyLoading(true);
+
+        const fraudData = await axiosSecure.get("/fraud-users");
+        const fraudEmails = fraudData.data.map(data => data.email);
+        if (fraudEmails.includes(user.email)) {
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "You can't upload any property"
+            });
+            setAddPropertyLoading(false);
+            return;
+        }
+
         const form = e.target;
         const property_title = form.property_title.value;
         const property_location = form.property_location.value;

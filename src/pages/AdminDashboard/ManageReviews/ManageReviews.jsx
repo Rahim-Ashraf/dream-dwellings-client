@@ -44,12 +44,12 @@ const ManageReviews = () => {
     }
 
     return (
-        <div>
-            {reviews.map(review => <div key={review._id} className="card card-compact bg-base-100 shadow-xl mx-4">
-                <div className="max-w-80 card-body">
-                    <div className='flex gap-2'>
-                        <div className="w-full"><img className='rounded-full' src={review.reviewer_image} alt={review.reviewer_name} /></div>
-                        <div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {reviews.map(review => <div key={review._id} className=" shadow-xl">
+                <div className="card-body">
+                    <div className='grid grid-cols-4 gap-2'>
+                        <div className="w-full col-span-1"><img className='rounded-full' src={review.reviewer_image} alt={review.reviewer_name} /></div>
+                        <div className="col-span-3">
                             <h2 className="card-title">Reviewer name: {review.reviewer_name}</h2>
                             <h2 className="card-title">Reviewer email: {review.reviewer_email}</h2>
                             <p>{review.review_description}</p>

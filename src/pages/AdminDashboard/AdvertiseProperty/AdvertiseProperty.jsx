@@ -19,13 +19,15 @@ const AdvertiseProperty = () => {
         const property_location = property.property_location;
         const price_range = property.price_range;
         const verification_status = property.verification_status;
+        const agent_email = property.agent_email;
 
         const body = {
             property_id,
             property_image,
             property_location,
             price_range,
-            verification_status
+            verification_status,
+            agent_email
         };
         axiosPublic.post("/advertisements", body)
             .then(res => {

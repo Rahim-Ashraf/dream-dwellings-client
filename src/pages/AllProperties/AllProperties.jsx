@@ -24,7 +24,7 @@ const AllProperties = () => {
             });
     }, [axiosPublic]);
 
-    const handleCategoryChange = e => {
+    const handlePriceChange = e => {
         if (e.target.value === "All") {
             setProperties(allProperties);
             return
@@ -68,13 +68,13 @@ const AllProperties = () => {
                         <label className="label">
                             <h3 className="font-bold">filter by Price Range</h3>
                         </label>
-                        <select onChange={handleCategoryChange} name="category" className="select select-bordered w-fit">
+                        <select onChange={handlePriceChange} name="category" className="select select-bordered w-fit">
                             <option value="All">All</option>
-                            <option value="0-100">0-100</option>
-                            <option value="101-1000">101-1000</option>
+                            <option value="0-1000">0-1000</option>
                             <option value="1001-10000">1001-10000</option>
                             <option value="10001-100000">10001-100000</option>
                             <option value="100001-1000000">100001-1000000</option>
+                            <option value="1000001-10000000">1000001-10000000</option>
                         </select>
                     </div>
                 </div>
@@ -97,7 +97,7 @@ const AllProperties = () => {
                             <div className="divider"></div>
                             <div className="flex justify-between">
                                 <p className="font-bold">Agent: {property.agent_name}</p>
-                                <div className="max-w-20"><img className="rounded-[50%]" src={property.property_image} alt="" /></div>
+                                <div className="max-w-12"><img className="rounded-[50%]" src={property.agent_image} alt="" /></div>
                             </div>
                         </div>
                         <div className="my-auto">
