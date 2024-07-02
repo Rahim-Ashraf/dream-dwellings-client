@@ -15,3 +15,6 @@
 *   An admin is the most powerful whow can manage and verify properties
 *   An admin also can manage reviews and add advertisements
 *   This website have JWT authorization for private routing
+
+### Technologies used:
+React, Tailwind CSS, Firebase, Express JS, MongoDB, JWT
