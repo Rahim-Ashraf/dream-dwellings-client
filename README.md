@@ -1,4 +1,4 @@
-## Website name: Drea Dwellings
+## Website name: Dream Dwellings
 #### Admin username: admin@gmail.com
 #### Admin password: aaaaA!
 
