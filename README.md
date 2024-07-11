@@ -1,6 +1,6 @@
 ## Website name: Dream Dwellings
-#### Admin username: admin@gmail.com
-#### Admin password: aaaaA!
+#### Admin username: admin@gmail.com, Admin password: aaaaA!
+#### Agent username: agent@gmail.com, Agent password: aaaaA!
 
 ## live link: https://dream-dwellings-36ef2.web.app
 ### Features:
