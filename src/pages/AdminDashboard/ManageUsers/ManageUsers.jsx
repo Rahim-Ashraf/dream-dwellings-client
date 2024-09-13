@@ -67,8 +67,8 @@ const ManageUsers = () => {
                             <td className="space-y-1">
                                 {user.is_fraud ? <h4 className="font-bold text-red">Fraud</h4> : <>
                                     <div className="flex justify-end gap-2">
-                                        <button onClick={() => handleMakeAdmin(user)} className="btn btn-sm bg-[#0055ff] text-white">Make Admin</button>
-                                        <button onClick={() => handleMakeagent(user)} className="btn btn-errorf btn-sm bg-[#0055ff] text-white">Make Agent</button>
+                                        <button onClick={() => handleMakeAdmin(user)} className="btn btn-sm bg-gradient-to-br from-teal-500 to-[#0060f0] text-white">Make Admin</button>
+                                        <button onClick={() => handleMakeagent(user)} className="btn btn-errorf btn-sm bg-gradient-to-br from-teal-500 to-[#0060f0] text-white">Make Agent</button>
                                     </div>
                                     <div className="flex justify-end gap-2">
                                         {user.role === "agent" && <button onClick={() => handleMarkFraud(user)} className="btn btn-errorf btn-sm btn-error">Mark as fraud</button>}

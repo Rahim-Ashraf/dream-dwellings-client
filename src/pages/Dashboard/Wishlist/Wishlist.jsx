@@ -45,7 +45,7 @@ const Wishlist = () => {
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {wishlists.map(wishlist => <div key={wishlist._id} className="card card-compact bg-base-100 shadow-xl">
+            {wishlists.map(wishlist => <div key={wishlist._id} className="card card-compact bg-base-100 shadow-lg shadow-teal-200">
                 <figure><img src={wishlist.property_image} alt="" /></figure>
                 <div className="card-body w-full">
                     <h2 className="text-2xl font-bold mb-4">{wishlist.property_title}</h2>
@@ -69,7 +69,7 @@ const Wishlist = () => {
                         <div className="max-w-10"><img className="rounded-[50%]" src={wishlist.agent_image} alt="" /></div>
                     </div>
                     <div className="divider"></div>
-                    <Link to={`/dashboard/make-offer/${wishlist.property_id}`}><button className="btn bg-[#0055ff] text-white w-full">Make an offer</button></Link>
+                    <Link to={`/dashboard/make-offer/${wishlist.property_id}`}><button className="btn bg-gradient-to-br from-teal-500 to-[#0060f0] text-white w-full">Make an offer</button></Link>
                     <button onClick={() => handleRemoveWishlist(wishlist._id)} className="btn bg-red-600 text-white">Remove</button>
                 </div>
             </div>)}

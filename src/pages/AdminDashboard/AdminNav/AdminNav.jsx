@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const AdminNav = () => {
     return (
-        <div className="bg-[#0055ff] flex flex-col p-4">
+        <div className="bg-gradient-to-br from-teal-500 to-[#0060f0] flex flex-col p-4">
             <NavLink to="/admin-dashboard/my-profile" className={({ isActive }) => isActive ? "text-gray-100 font-bold" : "font-bold"
             }>Admin Profile</NavLink>
             <NavLink to="/admin-dashboard/manage-properties" className={({ isActive }) => isActive ? "text-gray-100 font-bold" : "font-bold"

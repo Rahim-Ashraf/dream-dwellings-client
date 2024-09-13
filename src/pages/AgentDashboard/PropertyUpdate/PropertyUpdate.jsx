@@ -119,7 +119,7 @@ const PropertyUpdate = () => {
                     </div>
                 </div>
 
-                <input className="btn bg-[#0055ff] text-white" type="submit" disabled={updatePropertyLoading} value="Update Property" />
+                <input className="btn bg-gradient-to-br from-teal-500 to-[#0060f0] text-white" type="submit" disabled={updatePropertyLoading} value="Update Property" />
             </form>
         </div>
     );

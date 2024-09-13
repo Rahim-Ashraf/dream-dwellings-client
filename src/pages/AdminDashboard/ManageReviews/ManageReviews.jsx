@@ -45,7 +45,7 @@ const ManageReviews = () => {
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {reviews.map(review => <div key={review._id} className=" shadow-xl">
+            {reviews.map(review => <div key={review._id} className=" shadow-lg shadow-teal-200">
                 <div className="card-body">
                     <div className='grid grid-cols-4 gap-2'>
                         <div className="w-full col-span-1"><img className='rounded-full' src={review.reviewer_image} alt={review.reviewer_name} /></div>

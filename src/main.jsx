@@ -13,7 +13,7 @@ const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <div className='max-w-screen-2xl mx-auto px-4'>
+    <div className='open-sans-font'>
       <QueryClientProvider client={queryClient}>
         <Provider>
           <RouterProvider router={router} />

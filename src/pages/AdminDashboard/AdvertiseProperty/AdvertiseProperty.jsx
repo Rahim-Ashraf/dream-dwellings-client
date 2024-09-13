@@ -65,7 +65,7 @@ const AdvertiseProperty = () => {
                             <td>{property.property_title}</td>
                             <td>{property.price_range}</td>
                             <td>{property.agent_name}</td>
-                            <td><button onClick={() => handleAdvertise(property)} className="btn btn-sm bg-[#0055ff] text-white">Advertise</button></td>
+                            <td><button onClick={() => handleAdvertise(property)} className="btn btn-sm bg-gradient-to-br from-teal-500 to-[#0060f0] text-white">Advertise</button></td>
                         </tr>)
                     }
                 </tbody>

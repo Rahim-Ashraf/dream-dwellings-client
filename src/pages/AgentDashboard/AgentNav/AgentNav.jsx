@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const AgentNav = () => {
     return (
-        <div className="bg-[#0055ff] flex flex-col p-4">
+        <div className="bg-gradient-to-br from-teal-500 to-[#0060f0] flex flex-col p-4">
             <NavLink to="/agent-dashboard/my-profile" className={({ isActive }) => isActive ? "text-gray-100 font-bold" : "font-bold"
             }>Agent Profile</NavLink>
             <NavLink to="/agent-dashboard/add-property" className={({ isActive }) => isActive ? "text-gray-100 font-bold" : "font-bold"

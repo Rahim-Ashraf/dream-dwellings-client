@@ -44,7 +44,7 @@ const MyReviews = () => {
 
     return (
         <div className="space-y-4">
-            {myReviews.map(review => <div key={review._id} className="card card-compact  bg-emerald-600 bg-opacity-10 shadow-xl mx-4">
+            {myReviews.map(review => <div key={review._id} className="card card-compact  bg-emerald-600 bg-opacity-10 shadow-lg shadow-teal-200 mx-4">
                 <div className="card-body">
                     <div>
                         <div className="flex gap-4 items-center">

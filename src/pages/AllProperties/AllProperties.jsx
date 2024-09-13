@@ -79,9 +79,9 @@ const AllProperties = () => {
                     </div>
                 </div>
             </div>
-            <h1 className="text-5xl font-bold text-center text-[#0055ff] my-6">All properties </h1>
+            <h1 className="text-5xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-[#0060f0] my-6">All properties </h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {properties.map(property => <div key={property._id} className="card card-compact bg-base-100 shadow-xl">
+                {properties.map(property => <div key={property._id} className="card card-compact bg-base-100 shadow-lg shadow-teal-200">
                     <figure className="max-h-60"><img src={property.property_image} alt="" /></figure>
                     <div className="p-4">
                         <div>
@@ -93,7 +93,7 @@ const AllProperties = () => {
                                 </div>
                                 <p className="font-bold">Status: <span className="text-emerald-600">{property.verification_status}</span></p>
                             </div>
-                            <p className="font-bold ml-1"><span className="text-[#0055ff]">${property.price_range}</span></p>
+                            <p className="font-bold ml-1"><span className="text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-[#0060f0]">${property.price_range}</span></p>
                             <div className="divider"></div>
                             <div className="flex justify-between">
                                 <p className="font-bold">Agent: {property.agent_name}</p>
@@ -101,7 +101,7 @@ const AllProperties = () => {
                             </div>
                         </div>
                         <div className="my-auto">
-                            <Link to={`/details/${property._id}`}><button className="btn bg-[#0055ff] text-white w-full mt-4">Details</button></Link>
+                            <Link to={`/details/${property._id}`}><button className="btn bg-gradient-to-br from-teal-500 to-[#0060f0] text-white w-full mt-4">Details</button></Link>
                         </div>
                     </div>
                 </div>)}

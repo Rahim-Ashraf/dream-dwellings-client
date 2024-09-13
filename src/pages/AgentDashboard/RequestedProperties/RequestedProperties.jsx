@@ -55,7 +55,7 @@ const RequestedProperties = () => {
                             <td>{property.buyer_email}</td>
                             <td>{property.buyer_name}</td>
                             <td>{property.offered_amount}</td>
-                            <td>{property.verification_status === "accepted" ? <h2 className="text-emerald-600 font-bold">{property.verification_status}</h2> : property.verification_status === "pending" ? <button onClick={() => handleAccept(property)} className="btn btn-sm bg-[#0055ff] text-white">Accept</button> : property.verification_status === "bought" ? <h2 className="text-emerald-600 font-bold">Sold</h2> : ""}</td>
+                            <td>{property.verification_status === "accepted" ? <h2 className="text-emerald-600 font-bold">{property.verification_status}</h2> : property.verification_status === "pending" ? <button onClick={() => handleAccept(property)} className="btn btn-sm bg-gradient-to-br from-teal-500 to-[#0060f0] text-white">Accept</button> : property.verification_status === "bought" ? <h2 className="text-emerald-600 font-bold">Sold</h2> : ""}</td>
 
                             <td>{property.verification_status === "rejected" ? <h2 className="text-red-600 font-bold">{property.verification_status}</h2> : property.verification_status === "pending" ? <button onClick={() => handleReject(property._id)} className="btn btn-errorf btn-sm">Reject</button> : ""}</td>
                         </tr>)

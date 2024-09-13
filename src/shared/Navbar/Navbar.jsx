@@ -20,17 +20,17 @@ const Navbar = () => {
     }
 
     const menu = <>
-        <NavLink to="/" className={({ isActive }) => isActive ? "font-bold" : "text-gray-500 font-bold"
+        <NavLink to="/" className={({ isActive }) => isActive ? "text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-[#0060f0] font-bold" : "text-gray-800 font-bold"
         }>Home</NavLink>
         {user && <>
-            <NavLink to="/all-properties" className={({ isActive }) => isActive ? "ml-4 font-bold" : "text-gray-500 ml-4 font-bold"
+            <NavLink to="/all-properties" className={({ isActive }) => isActive ? "ml-4 text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-[#0060f0] font-bold" : "text-gray-800 ml-4 font-bold"
             }>All properties</NavLink>
-            <NavLink to={dbUser?.role === "admin" ? "/admin-dashboard/my-profile" : dbUser?.role === "agent" ? "/agent-dashboard/my-profile" : "/dashboard/my-profile"} className={({ isActive }) => isActive ? "ml-4 font-bold" : "text-gray-500 ml-4 font-bold"
+            <NavLink to={dbUser?.role === "admin" ? "/admin-dashboard/my-profile" : dbUser?.role === "agent" ? "/agent-dashboard/my-profile" : "/dashboard/my-profile"} className={({ isActive }) => isActive ? "ml-4 text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-[#0060f0] font-bold" : "text-gray-800 ml-4 font-bold"
             }>Dashboard</NavLink>
         </>}
     </>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar max-w-screen-xl mx-auto">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -40,7 +40,7 @@ const Navbar = () => {
                         {menu}
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost text-xl font-black">Dream <span className="text-[#0055ff]">Dwellings</span></Link>
+                <Link to="/" className="btn btn-ghost text-xl text-gray-800 font-extrabold">Dream <span className="text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-[#0060f0]">Dwellings</span></Link>
             </div>
 
             <div className="navbar-end">
@@ -59,7 +59,7 @@ const Navbar = () => {
                         <li><button onClick={handleLogout} className="btn btn-error text-white">Logout</button></li>
                     </ul>
                 </details>
-                    : <Link to="/login"><button className="ml-4 btn bg-[#0055ff] text-white font-bold">Login</button></Link>}
+                    : <Link to="/login"><button className="ml-4 btn bg-gradient-to-br from-teal-500 to-[#0060f0] text-white font-bold">Login</button></Link>}
             </div>
 
         </div>

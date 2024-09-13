@@ -62,7 +62,7 @@ const CheckoutForm = ({ singlePropertyBought }) => {
         <form className='w-full lg:w-1/2 mx-auto' onSubmit={handleSubmit}>
             <CardElement />
             {/* <PaymentElement /> */}
-            <button type="submit" disabled={!stripe || !elements || payLoading} className='btn w-full mt-2 bg-[#0055ff] text-white'>
+            <button type="submit" disabled={!stripe || !elements || payLoading} className='btn w-full mt-2 bg-gradient-to-br from-teal-500 to-[#0060f0] text-white'>
                 Pay
             </button>
             {paymentError && <div>{paymentError}</div>}

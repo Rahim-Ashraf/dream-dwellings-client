@@ -69,7 +69,7 @@ const Register = () => {
             })
     }
     return (
-        <div data-aos="fade-up" data-aos-duration="2000" className="card mt-10 shadow-2xl bg-base-100 w-full md:w-2/3 lg:w-1/2 mx-auto">
+        <div className="card mt-10 shadow-2xl shadow-teal-200 max-w-screen-xl w-full md:w-2/3 lg:w-1/2 mx-auto">
             <div className="card-body">
                 <form onSubmit={handleEmailRegister}>
                     <div className="form-control">
@@ -103,7 +103,7 @@ const Register = () => {
                         {registerError}
                     </p>
                     <div className="form-control mt-6">
-                        <button type="submit" disabled={regisLoading} className="btn bg-[#0055ff] text-white">Register</button>
+                        <button type="submit" disabled={regisLoading} className="btn bg-gradient-to-br from-teal-500 to-[#0060f0] text-white">Register</button>
                     </div>
                 </form>
 
@@ -114,7 +114,7 @@ const Register = () => {
                         <Link to="/login" className="text-blue-600 font-bold"> Login</Link>
                     </div>
                     <div>
-                        <span className="font-bold">Go to </span><Link to="/" className="btn bg-[#0055ff] text-white font-semibold"> Home Page</Link>
+                        <span className="font-bold">Go to </span><Link to="/" className="btn bg-gradient-to-br from-teal-500 to-[#0060f0] text-white font-semibold"> Home Page</Link>
                     </div>
                 </div>
             </div>
