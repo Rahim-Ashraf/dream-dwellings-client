@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <div>
             <div className="hero min-h-screen hero-clip" style={{ backgroundImage: 'url(https://i.ibb.co.com/jbvp5nt/bangkok.jpg)' }}>
-                <div className="hero-overlay bg-gradient-to-t from-[#0044aa] via-[#0044aa90] to-[#14b8a640] rounded-lg"></div>
+                <div className="hero-overlay bg-gradient-to-t from-[#0044aa] via-[#0044aa90] to-[#14b8a640]"></div>
                 <div className="text-center text-gray-100 max-w-xl mx-auto">
                     <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
                     <p className="mb-5">At Dream Dwelling, we help you find more than just a house—we help you discover the perfect home. With a curated selection of top-tier properties and personalized services, your dream home is just a click away. Begin your journey today and experience the difference with Dream Dwelling</p>
@@ -20,25 +20,27 @@ const Home = () => {
                 <h2 className="text-5xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-[#0060f0] pb-8">Advertisements</h2>
                 <Advertisements></Advertisements>
             </div>
-
-            <div className="bg-cover bg-fixed bg-gradient-to-br from-teal-500 to-[#0060f0] p-16 primary-clip" style={{ backgroundImage: 'url(https://i.ibb.co.com/7XHkx2P/funiture1.jpg)' }}>
-                <div className="max-w-screen-xl mx-auto">
-                    <h2 className="text-5xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-[#0060f0]">Real Estate services</h2>
-                    <div className="md:flex gap-4">
-                        <div className="p-8 shadow-lg shadow-teal-200 bg-base-100 rounded-md">
-                            <PiBuilding className="text-[#E2837A] text-5xl" />
-                            <h2 className="card-title">Buy A Property</h2>
-                            <p>get your own luxurious home by buying properties</p>
-                        </div>
-                        <div className="p-8 shadow-lg shadow-teal-200 bg-base-100 rounded-md">
-                            <BiBuildings className="text-[#E2837A] text-5xl" />
-                            <h2 className="card-title">Sell A Property</h2>
-                            <p>Unlock the door to a seamless and rewarding property selling.</p>
-                        </div>
-                        <div className="p-8 shadow-lg shadow-teal-200 bg-base-100 rounded-md">
-                            <HiOutlineBuildingLibrary className="text-[#E2837A] text-5xl" />
-                            <h2 className="card-title">Rent A Property</h2>
-                            <p>Discover the perfect rental property that suits your new lifestyle.</p>
+            {/* Sevices section */}
+            <div className="bg-cover bg-fixed primary-clip" style={{ backgroundImage: 'url(https://i.ibb.co.com/7XHkx2P/funiture1.jpg)' }}>
+                <div className="pt-16 pb-32 bg-opacity-10 bg-gradient-to-t from-[#0044aa] via-[#0044aa90] to-[#14b8a640]">
+                    <div className="max-w-screen-xl mx-auto">
+                        <h2 className="text-5xl font-bold text-center text-white p-8">Real Estate services</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 p-4">
+                            <div className="p-8 shadow-lg shadow-teal-200 bg-base-100 rounded-md">
+                                <PiBuilding className="text-[#E2837A] text-5xl" />
+                                <h2 className="card-title">Buy A Property</h2>
+                                <p>get your own luxurious home by buying properties</p>
+                            </div>
+                            <div className="p-8 shadow-lg shadow-teal-200 bg-base-100 rounded-md">
+                                <BiBuildings className="text-[#E2837A] text-5xl" />
+                                <h2 className="card-title">Sell A Property</h2>
+                                <p>Unlock the door to a seamless and rewarding property selling.</p>
+                            </div>
+                            <div className="p-8 shadow-lg shadow-teal-200 bg-base-100 rounded-md">
+                                <HiOutlineBuildingLibrary className="text-[#E2837A] text-5xl" />
+                                <h2 className="card-title">Rent A Property</h2>
+                                <p>Discover the perfect rental property that suits your new lifestyle.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
