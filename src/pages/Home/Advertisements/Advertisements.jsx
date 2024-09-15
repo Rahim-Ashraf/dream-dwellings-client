@@ -23,16 +23,17 @@ const Advertisements = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {/* advertisement cards */}
-            {advertisements.map(advertisement => <div key={advertisement._id} className="bg-[#0066ff] bg-opacity-5 card card-compact shadow-lg shadow-teal-200">
-                <figure><img src={advertisement.property_image} alt="" /></figure>
-                <div className="flex justify-between gap-4 p-2">
-                    <div>
-                        <h2 className="card-title"><FaLocationDot className="text-gray-600" /> {advertisement.property_location}</h2>
-                        <p className="text-xl font-semibold">${advertisement.price_range}</p>
+            {advertisements.map(advertisement => <div key={advertisement._id} className="bg-[#0066ff] bg-opacity-10 p-4 shadow-lg shadow-teal-200 rounded-lg space-y-4">
+                <figure><img src={advertisement.property_image} alt="" className="rounded-xl border" /></figure>
+                <div className="flex justify-between items-center">
+                    <div className="flex gap-2 items-center text-xl">
+                        <FaLocationDot className="text-gray-600" />
+                        <h2>{advertisement.property_location}</h2>
                     </div>
-                    <div className="my-auto">
-                        <Link to={`/details/${advertisement.property_id}`}><button className="btn bg-gradient-to-br from-teal-500 to-[#0060f0] text-white">View <FaArrowTrendUp /></button></Link>
-                    </div>
+                    <p className="font-semibold">${advertisement.price_range}</p>
+                </div>
+                <div className="my-auto">
+                    <Link to={`/details/${advertisement.property_id}`}><button className="btn bg-gradient-to-br from-teal-500 to-[#0060f0] text-white w-full">View <FaArrowTrendUp /></button></Link>
                 </div>
             </div>)}
         </div>
