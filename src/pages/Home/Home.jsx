@@ -4,6 +4,7 @@ import { PiBuilding } from "react-icons/pi";
 import { HiOutlineBuildingLibrary } from "react-icons/hi2";
 import { BiBuildings } from "react-icons/bi";
 import { motion } from "framer-motion";
+import PrimaryButton from "../../shared/PrimaryButton/PrimaryButton";
 
 
 const Home = () => {
@@ -11,17 +12,31 @@ const Home = () => {
         <div>
             <div className="hero min-h-screen hero-clip" style={{ backgroundImage: 'url(https://i.ibb.co.com/jbvp5nt/bangkok.jpg)' }}>
                 <div className="hero-overlay bg-gradient-to-t from-[#0044aa] via-[#0044aa90] to-[#14b8a640]"></div>
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 2 }}
-                >
-                    <div className="text-center text-gray-100 max-w-xl mx-auto">
+
+                <div className="text-center text-gray-100 max-w-xl mx-auto">
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 2 }}
+                    >
                         <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 2 }}
+                    >
                         <p className="mb-5">At Dream Dwelling, we help you find more than just a house—we help you discover the perfect home. With a curated selection of top-tier properties and personalized services, your dream home is just a click away. Begin your journey today and experience the difference with Dream Dwelling</p>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 2 }}
+                    >
                         <Link to="/all-properties"><button className="btn border-none bg-gradient-to-br from-teal-500 to-[#0060f0] transition delay-100 hover:-translate-y-1 hover:scale-110 duration-500 text-white">Get Started</button></Link>
-                    </div>
-                </motion.div>
+                    </motion.div>
+                </div>
+
             </div>
             <div className=" py-16 max-w-screen-xl mx-auto">
                 <h2 className="text-5xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-[#0060f0] pb-8">Featured Listings</h2>
@@ -29,7 +44,7 @@ const Home = () => {
             </div>
             {/* Sevices section */}
             <div className="bg-cover bg-fixed primary-clip" style={{ backgroundImage: 'url(https://i.ibb.co.com/7XHkx2P/funiture1.jpg)' }}>
-                <div className="pt-16 pb-32 bg-gradient-to-t from-[#0044aa] via-[#0044aa90] to-[#14b8a660]">
+                <div className="pt-16 pb-32 bg-gradient-to-t from-[#0044aa] via-[#0044aa90] to-[#1c3d3a80]">
                     <div className="max-w-screen-xl mx-auto">
                         <h2 className="text-5xl font-bold text-center text-white p-8">Real Estate services</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 p-4">
@@ -84,7 +99,7 @@ const Home = () => {
                         <input type="email" placeholder="Your Email" className="input input-bordered" required />
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn bg-gradient-to-br from-teal-500 to-[#0060f0] text-white">subscrib</button>
+                        <PrimaryButton btnText={"Subscribe"}></PrimaryButton>
                     </div>
                 </div>
             </div>

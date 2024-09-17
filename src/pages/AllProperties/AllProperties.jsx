@@ -2,6 +2,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic"
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaLocationDot } from "react-icons/fa6";
+import PrimaryButton from "../../shared/PrimaryButton/PrimaryButton";
 
 const AllProperties = () => {
     const axiosPublic = useAxiosPublic();
@@ -100,8 +101,10 @@ const AllProperties = () => {
                                 <div className="max-w-12"><img className="rounded-[50%]" src={property.agent_image} alt="" /></div>
                             </div>
                         </div>
-                        <div className="my-auto">
-                            <Link to={`/details/${property._id}`}><button className="btn bg-gradient-to-br from-teal-500 to-[#0060f0] text-white w-full mt-4">Details</button></Link>
+                        <div className="pt-4">
+                            <Link to={`/details/${property._id}`}>
+                                <PrimaryButton btnText={"Details"}></PrimaryButton>
+                            </Link>
                         </div>
                     </div>
                 </div>)}

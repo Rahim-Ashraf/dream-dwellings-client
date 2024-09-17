@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./../../../hooks/useAxiosPublic"
 import { Link } from "react-router-dom";
 import { FaArrowTrendUp, FaLocationDot } from "react-icons/fa6";
+import { motion } from "framer-motion"
+import PrimaryButton from "../../../shared/PrimaryButton/PrimaryButton";
 
 const Advertisements = () => {
     const axiosPublic = useAxiosPublic();
@@ -33,7 +35,9 @@ const Advertisements = () => {
                     <p className="font-semibold">${advertisement.price_range}</p>
                 </div>
                 <div className="my-auto">
-                    <Link to={`/details/${advertisement.property_id}`}><button className="btn bg-gradient-to-br from-teal-500 to-[#0060f0] text-white w-full">View <FaArrowTrendUp /></button></Link>
+                    <Link to={`/details/${advertisement.property_id}`}>
+                        <PrimaryButton btnText={"View"} btnIcon={< FaArrowTrendUp />}></PrimaryButton>
+                    </Link>
                 </div>
             </div>)}
         </div>

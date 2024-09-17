@@ -21,8 +21,8 @@ const MyProfile = () => {
                     <img src={user.photoURL} />
                 </div>
             </div>
-            <h2 className="font-bold text-2xl">Name: {user.displayName}</h2>
-            {dbUser?.role && <h2 className="font-bold">Role: {dbUser.role}</h2>}
+            <h2 className="font-bold text-2xl text-white">Name: {user.displayName}</h2>
+            {dbUser?.role && <h2 className="font-bold text-white">Role: {dbUser.role}</h2>}
         </div>
     );
 };
