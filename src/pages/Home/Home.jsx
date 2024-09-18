@@ -32,8 +32,17 @@ const Home = () => {
                         initial={{ opacity: 0, scale: 0.5 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 2 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                     >
-                        <Link to="/all-properties"><button className="btn border-none bg-gradient-to-br from-teal-500 to-[#0060f0] transition delay-100 hover:-translate-y-1 hover:scale-110 duration-500 text-white">Get Started</button></Link>
+                        <Link to="/all-properties">
+                            <motion.div
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                <button className="btn border-none bg-gradient-to-br from-teal-500 to-[#0060f0] transition delay-100 text-white">Get Started</button>
+                            </motion.div>
+                        </Link>
                     </motion.div>
                 </div>
 
