@@ -5,13 +5,14 @@ import { HiOutlineBuildingLibrary } from "react-icons/hi2";
 import { BiBuildings } from "react-icons/bi";
 import { motion } from "framer-motion";
 import PrimaryButton from "../../shared/PrimaryButton/PrimaryButton";
+import PropertiesByArea from "./PropertiesByArea/PropertiesByArea";
 
 
 const Home = () => {
     return (
         <div>
             <div className="hero min-h-screen hero-clip" style={{ backgroundImage: 'url(https://i.ibb.co.com/jbvp5nt/bangkok.jpg)' }}>
-                <div className="hero-overlay bg-gradient-to-t from-[#0044aa] via-[#0044aa90] to-[#14b8a640]"></div>
+                <div className="hero-overlay bg-gradient-to-t from-[#0044aa] via-[#0044aa80] to-[#14b8a640]"></div>
 
                 <div className="text-center text-gray-100 max-w-xl mx-auto">
                     <motion.div
@@ -45,10 +46,9 @@ const Home = () => {
                         </Link>
                     </motion.div>
                 </div>
-
             </div>
-            <div className=" py-16 max-w-screen-xl mx-auto">
-                <h2 className="text-5xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-[#0060f0] pb-8">Featured Listings</h2>
+            <div className="py-16 max-w-screen-xl mx-auto">
+                <h2 className="text-5xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-[#0060f0] py-8">Featured Listings</h2>
                 <Advertisements></Advertisements>
             </div>
             {/* Sevices section */}
@@ -94,6 +94,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            <PropertiesByArea></PropertiesByArea>
             {/* news letter */}
             <div className="my-10">
                 <div className="card-body">
