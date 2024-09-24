@@ -17,7 +17,6 @@ const Register = () => {
     const [regisLoading, setRegisLoading] = useState(false)
 
     const handleEmailRegister = async (e) => {
-        setRegisLoading(true);
         e.preventDefault();
         setRegisterError("");
         const email = e.target.email.value;
@@ -34,7 +33,7 @@ const Register = () => {
             setRegisterError("password should have atlast 1 special charecter");
             return
         }
-
+        setRegisLoading(true);
         const photo = e.target.photo.files[0];
         const formData = new FormData()
         formData.set('key', 'c2fde89598db76e7697f8f2bf3f338ec')
