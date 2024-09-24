@@ -54,11 +54,11 @@ const Register = () => {
                     timer: 1500
                 });
                 setRegisLoading(false);
-
                 axiosPublic.post("/users", { email: res.user.email, userName: name })
                 navigate("/")
             })
             .catch(() => {
+                setRegisLoading(false);
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
