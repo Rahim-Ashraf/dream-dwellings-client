@@ -22,9 +22,9 @@ const Navbar = () => {
     const menu = <>
         <NavLink to="/" className={({ isActive }) => isActive ? "text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-[#0060f0] font-bold" : "text-gray-800 font-bold"
         }>Home</NavLink>
+        <NavLink to="/all-properties" className={({ isActive }) => isActive ? "ml-4 text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-[#0060f0] font-bold" : "text-gray-800 ml-4 font-bold"
+        }>All properties</NavLink>
         {user && <>
-            <NavLink to="/all-properties" className={({ isActive }) => isActive ? "ml-4 text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-[#0060f0] font-bold" : "text-gray-800 ml-4 font-bold"
-            }>All properties</NavLink>
             <NavLink to={dbUser?.role === "admin" ? "/admin-dashboard/my-profile" : dbUser?.role === "agent" ? "/agent-dashboard/my-profile" : "/dashboard/my-profile"} className={({ isActive }) => isActive ? "ml-4 text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-[#0060f0] font-bold" : "text-gray-800 ml-4 font-bold"
             }>Dashboard</NavLink>
         </>}

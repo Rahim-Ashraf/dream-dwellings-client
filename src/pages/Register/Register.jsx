@@ -61,8 +61,8 @@ const Register = () => {
                 setRegisLoading(false);
                 Swal.fire({
                     icon: "error",
-                    title: "Oops...",
-                    text: "Registration failed"
+                    title: "Registration failed",
+                    text: "Please try with another email"
                 });
                 console.log("error")
             })
